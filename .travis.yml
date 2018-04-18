@@ -1,0 +1,23 @@
+language: c
+notifications:
+  email: false
+  slack: seksek42:Czm6X8KwtFbnbzOarCISZ6S1
+addons:
+  apt:
+    packages:
+      - gcc-multilib
+matrix:
+    include:
+        - os: osx
+          compiler: gcc
+        - os: osx
+          compiler: clang
+        - os: linux
+          compiler: gcc
+        - os: linux
+          compiler: clang
+    allow_failures:
+        - os: linux
+          compiler: clang
+script:
+  - make CC=$CC && ./ft_select
