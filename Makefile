@@ -6,7 +6,7 @@
 #    By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 17:27:33 by jjaniec           #+#    #+#              #
-#    Updated: 2018/04/19 21:27:55 by jjaniec          ###   ########.fr        #
+#    Updated: 2018/04/19 21:34:36 by jjaniec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME = ft_select
 
 UNAME_S := $(shell uname -s)
 
-SRC_NAME = main.c
+SRC_NAME = init_term_and_settings.c \
+		   tools.c \
+		   main.c
 
 INCLUDES_NAME = ft_select.h
 

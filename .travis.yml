@@ -20,4 +20,4 @@ matrix:
         - os: linux
           compiler: clang
 script:
-  - make CC=$CC && ./ft_select
+  - make CC=$CC
