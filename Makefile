@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jjaniec <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 17:27:33 by jjaniec           #+#    #+#              #
-#    Updated: 2018/04/18 17:34:09 by jjaniec          ###   ########.fr        #
+#    Updated: 2018/04/19 21:27:55 by jjaniec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,16 +26,16 @@ SRC = $(addprefix $(SRC_DIR), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_DIR), $(SRC_NAME:.c=.o))
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -g #-Werror
 #DEV_FLAGS = -fsanitize=address -fno-omit-frame-pointer
-IFLAGS = -I./ft_printf/includes -I./$(INCLUDES_DIR)
-LFLAGS = -L./ft_printf -lftprintf
+IFLAGS = -I./libft -I./$(INCLUDES_DIR)
+LFLAGS = -L./libft -lft -ltermcap
 
 CFLAGS += $(DEV_FLAGS)
-FT_PRINTF_DIR = ./ft_printf
-LIBFTPRINTF = $(addprefix $(FT_PRINTF_DIR),"/libftprintf.a")
+LIBFT_DIR = ./libft
+LIBFT = $(addprefix $(LIBFT_DIR),"/libft.a")
 
-MAKEFILE_STATUS = $(addprefix $(addprefix $(FT_PRINTF_DIR),"/libft"),"/.makefile_status")
+MAKEFILE_STATUS = $(addprefix $(LIBFT_DIR),"/.makefile_status")
 
 UNAME_S := $(shell uname -s)
 
@@ -45,9 +45,9 @@ endef
 
 all : $(NAME)
 
-$(NAME) : $(LIBFTPRINTF) $(OBJ)
+$(NAME) : $(LIBFT) $(OBJ)
 ifeq ($(UNAME_S),Linux)
-	@$(CC) $(CFLAGS) $(LFLAGS) $(OBJ) $(LIBFTPRINTF) -o $(NAME)
+	@$(CC) $(CFLAGS) $(LFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 endif
 ifeq ($(UNAME_S),Darwin)
 	@$(CC) $(CFLAGS) $(LFLAGS) $(OBJ) -o $(NAME)
@@ -57,19 +57,19 @@ $(OBJ_DIR)%.o : $(SRC_DIR)%.c $(addprefix $(INCLUDES_DIR), $(INCLUDES_NAME))
 	@mkdir -p $(OBJ_DIR)
 	@gcc $(CFLAGS) -c $(IFLAGS) $< -o $@ && $(call ui_line, $@, $(NAME))
 
-$(FT_PRINTF_DIR):
-	git clone https://github.com/jjaniec/ft_printf || true
+$(LIBFT_DIR):
+	git clone https://github.com/jjaniec/libft || true
 
-$(LIBFTPRINTF): $(FT_PRINTF_DIR)
-	make -C ft_printf
+$(LIBFT): $(LIBFT_DIR)
+	make -C libft
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@make clean -C ft_printf/
+	@make clean -C $(LIBFT_DIR)
 
 fclean: clean
 	@rm -f $(NAME)
-	@make fclean -C ft_printf/
+	@make fclean -C $(LIBFT_DIR)
 
 re: fclean all
 
