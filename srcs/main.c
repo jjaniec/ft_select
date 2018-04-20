@@ -38,7 +38,10 @@ void	ft_select(t_term_caps *tcaps, char **args)
 	while ("ceci est une boucle")
 	{
 		read_key(key);
-		printf("key = |%s|\n", key);
+
+		for (int i = 0 ; key[i] ; ++i) printf("%d\n", key[i]);
+
+		//printf("key = |%s|\n", key);
 		//printf("%d", *key);
 	}
 }

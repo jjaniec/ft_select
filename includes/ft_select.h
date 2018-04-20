@@ -74,4 +74,13 @@ int		get_printing_width(t_elems_infos *e_infos, char **elems);
 
 void	print_args(t_term_caps *tcaps, char **args);
 
+/*
+**	is_key.c
+*/
+
+bool	is_key_escape(char *key);
+
+bool	is_key_up_arrow(char *key);
+
+
 #endif
