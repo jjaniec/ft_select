@@ -32,14 +32,14 @@ void	ft_select(t_term_caps *tcaps, char **args)
 	char	key[5];
 
 	tcaps->clear_s = tgetstr("cl", NULL);
-	_clear_screen(tcaps->clear_s);
+	ft_putstr(tcaps->clear_s);
 	get_term_size(&(tcaps->ts));
 	print_args(tcaps, args);
 	while ("ceci est une boucle")
 	{
 		read_key(key);
 		printf("key = |%s|\n", key);
-		printf("%d", *key);
+		//printf("%d", *key);
 	}
 }
 
@@ -54,7 +54,7 @@ int		main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 
-	if (init_term() == -1 || change_term_settings(&tcaps) == -1)
+	if (init_term() == -1 || change_term_settings(&tcaps) == -1 || init_sig_handlers() == -1)
 		return (EXIT_FAILURE);
 	tcaps.e_infos.elems = argv;
 	tcaps.e_infos.elems_count = argc - 1;

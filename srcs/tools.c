@@ -12,7 +12,3 @@
 
 #include <ft_select.h>
 
-void	_clear_screen(char *cl)
-{
-	ft_putstr(cl);
-}

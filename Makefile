@@ -19,6 +19,7 @@ SRC_NAME = init_term_and_settings.c \
 		   get_term_size.c \
 		   get_printing_width.c \
 		   print_args.c \
+ 		   sig_management.c \
 		   main.c
 
 INCLUDES_NAME = ft_select.h

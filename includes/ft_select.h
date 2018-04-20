@@ -21,6 +21,7 @@
 # include <errno.h>
 # include <stdio.h>
 # include <sys/ioctl.h>
+#include <signal.h>
 
 # define FATAL_ERROR (2)
 # define SAVE (1)
@@ -56,9 +57,19 @@ void	save_or_restore_settings(int mode);
 **	tools.c
 */
 
-void	_clear_screen(char *cl);
+// nothing for now
 
-int		get_term_size(struct winsize *ts);
+/*
+**	get_term_size.c
+*/
+
+void	get_term_size(struct winsize *ts);
+
+/*
+**	sig_management.c
+*/
+
+int		init_sig_handlers(void);
 
 int		get_printing_width(t_elems_infos *e_infos, char **elems);
 

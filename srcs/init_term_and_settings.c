@@ -12,6 +12,11 @@
 
 #include <ft_select.h>
 
+/*
+**	Initialize the Termcap library.
+**	Returns -1 if an error occurs, 0 otherwise.
+*/
+
 int			init_term(void)
 {
 	char	*termtype;
@@ -34,6 +39,12 @@ int			init_term(void)
 	return (0);
 }
 
+/*
+**	The 'mode' parameter can be SAVE or RESTORE.
+**	SAVE : the function saves the current terminal settings
+**	RESTORE : the function restores the settings previously saved (see SAVE mode)
+*/
+
 void		save_or_restore_settings(int mode)
 {
 	static struct termios	orig_tios;
@@ -45,10 +56,15 @@ void		save_or_restore_settings(int mode)
 	}
 	else if (mode == RESTORE)
 	{
-		if (tcsetattr(STDIN_FILENO, TCSANOW, &orig_tios) -1)
+		if (tcsetattr(STDIN_FILENO, TCSANOW, &orig_tios) == -1)
 			ft_exit(FATAL_ERROR, "Failure while restoring the originals settings (tcsetattr() failed)\n");
 	}
 }
+
+/*
+**	Save the originals settings with save_or_restore_settings() then change them
+**	Returns -1 if an error occurs, 0 otherwise.
+*/
 
 int			change_term_settings(struct s_term_caps	*tcaps)
 {
@@ -60,7 +76,8 @@ int			change_term_settings(struct s_term_caps	*tcaps)
 	if (tcsetattr(STDIN_FILENO, TCSANOW, &(tcaps->tios)) == -1)
 	{
 		save_or_restore_settings(RESTORE);
-		ft_exit(FATAL_ERROR, "Call to tcsetattr() failed\n");
+		ft_putstr_fd("Call to tcsetattr() failed\n", STDERR_FILENO);
+		return (-1);
 	}
 	return (0);
 }
