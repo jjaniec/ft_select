@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 19:43:16 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/20 19:57:36 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/20 21:11:31 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int		get_printing_width(t_elems_infos *e_infos, char **elems)
 	while (elems[++i])
 	{
 		x = ft_strlen(elems[i]);
-		if ((x - 2) > e_infos->width)
-			e_infos->width = x + 2;
+		if (x > e_infos->width)
+			e_infos->width = x;
 	}
 	return (0);
 }

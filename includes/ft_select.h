@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/20 20:12:19 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/20 21:05:44 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@
 # include <errno.h>
 # include <stdio.h>
 # include <sys/ioctl.h>
-#include <signal.h>
+# include <signal.h>
 
 # define FATAL_ERROR (2)
+
 # define SAVE (1)
 # define RESTORE (0)
 
@@ -54,12 +55,6 @@ int		change_term_settings(struct s_term_caps	*tcaps);
 void	save_or_restore_settings(int mode);
 
 /*
-**	tools.c
-*/
-
-// nothing for now
-
-/*
 **	get_term_size.c
 */
 
@@ -72,5 +67,11 @@ void	get_term_size(struct winsize *ts);
 int		init_sig_handlers(void);
 
 int		get_printing_width(t_elems_infos *e_infos, char **elems);
+
+/*
+** print_args.c
+*/
+
+void	print_args(t_term_caps *tcaps, char **args);
 
 #endif

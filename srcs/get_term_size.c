@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:59:08 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/20 17:01:21 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/20 20:58:06 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** ts: winsize struct to store rows and cols count
 */
 
-void 		get_term_size(struct winsize *ts)
+void		get_term_size(struct winsize *ts)
 {
 	if (-1 == ioctl(STDOUT_FILENO, TIOCGWINSZ, ts))
 	{
