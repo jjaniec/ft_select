@@ -49,7 +49,11 @@ void	save_or_restore_settings(int mode);
 **	tools.c
 */
 
-void	_clear_screen(char *cl);
+// nothing for now
+
+/*
+**	get_term_size.c
+*/
 
 void	get_term_size(struct winsize *ts);
 

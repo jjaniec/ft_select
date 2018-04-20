@@ -32,13 +32,13 @@ void	ft_select(t_term_caps *tcaps, char **args)
 	char	key[5];
 
 	tcaps->clear_s = tgetstr("cl", NULL);
-	_clear_screen(tcaps->clear_s);
+	ft_putstr(tcaps->clear_s);
 	get_term_size(&(tcaps->ts));
 	while ("ceci est une boucle")
 	{
 		read_key(key);
 		printf("key = |%s|\n", key);
-		printf("%d", *key);
+		//printf("%d", *key);
 	}
 }
 

@@ -15,7 +15,6 @@
 /*
 ** Get terminal rows and column count using ioctl
 ** ts: winsize struct to store rows and cols count
-** returns nothing
 */
 
 void 		get_term_size(struct winsize *ts)
