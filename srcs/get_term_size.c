@@ -15,20 +15,16 @@
 /*
 ** Get terminal rows and column count using ioctl
 ** ts: winsize struct to store rows and cols count
-** return -1 and print and error message if ioctl failed,
-** otherwise return 0
+** returns nothing
 */
 
-int			get_term_size(struct winsize *ts)
+void 		get_term_size(struct winsize *ts)
 {
 	if (-1 == ioctl(STDOUT_FILENO, TIOCGWINSZ, ts))
 	{
-		ft_putstr_fd("ft_select: Failed to get terminal size\n", STDERR_FILENO);
-		ts->ws_row = -1;
-		ts->ws_col = -1;
-		return (-1);
+		save_or_restore_settings(RESTORE);
+		ft_exit(FATAL_ERROR, "ft_select: Failed to get terminal size\n");
 	}
 	printf("lines %d\n", ts->ws_row);
 	printf("columns %d\n", ts->ws_col);
-	return (0);
 }

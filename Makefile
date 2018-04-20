@@ -17,7 +17,8 @@ UNAME_S := $(shell uname -s)
 SRC_NAME = init_term_and_settings.c \
 		   tools.c \
 		   get_term_size.c \
-		   main.c
+		   main.c \
+		   sig_management.c
 
 INCLUDES_NAME = ft_select.h
 

@@ -53,7 +53,7 @@ int		main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 
-	if (init_term() == -1 || change_term_settings(&tcaps) == -1)
+	if (init_term() == -1 || change_term_settings(&tcaps) == -1 || init_sig_handlers() == -1)
 		return (EXIT_FAILURE);
 	ft_select(&tcaps, argv + 1);
 	save_or_restore_settings(RESTORE);
