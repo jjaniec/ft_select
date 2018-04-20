@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/20 19:52:58 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/20 20:12:19 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@
 typedef struct				s_elems_infos
 {
 	char					**elems;
+	unsigned int			elems_count;
 	int						width;
+	unsigned int			elems_per_row;
 }							t_elems_infos;
 
 typedef struct				s_term_caps
