@@ -18,6 +18,8 @@ matrix:
           compiler: clang
     allow_failures:
         - os: linux
+          compiler: gcc
+        - os: linux
           compiler: clang
 script:
   - make CC=$CC
