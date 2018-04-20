@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/19 21:33:40 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/20 17:16:17 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,37 @@
 # include <term.h>
 # include <termios.h>
 # include <errno.h>
+# include <stdio.h>
+# include <sys/ioctl.h>
+
 
 # define FATAL_ERROR (2)
 # define SAVE (1)
 # define RESTORE (0)
 
+typedef struct			s_term_caps
+{
+	struct termios		tios;
+	struct winsize		ts;
+	char				*clear_s;
+}						t_term_caps;
+
 /*
 **	init_term_and_settings.c
 */
+
 int		init_term(void);
-int		manage_term_settings(void);
+
+int		change_term_settings(struct s_term_caps	*tcaps);
+
 void	save_or_restore_settings(int mode);
 
 /*
 **	tools.c
 */
-void	_clear_screen(void);
 
-									#include <stdio.h> // debuuug
+void	_clear_screen(char *cl);
+
+int		get_term_size(struct winsize *ts);
 
 #endif
