@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/19 21:35:12 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/20 17:44:48 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,25 @@ void	read_key(char key[5])
 	}
 }
 
-void	ft_select(char **args)
+void	ft_select(t_term_caps *tcaps, char **args)
 {
 	char	key[5];
 
+	tcaps->clear_s = tgetstr("cl", NULL);
+	_clear_screen(tcaps->clear_s);
+	get_term_size(&(tcaps->ts));
 	while ("ceci est une boucle")
 	{
 		read_key(key);
-
 		printf("key = |%s|\n", key);
-
-
+		printf("%d", *key);
 	}
 }
 
 int		main(int argc, char **argv)
 {
+	struct s_term_caps	tcaps;
+
 	if (argc < 2)
 	{
 		ft_putstr_fd("usage: ft_select: argument1 [argument2 ...]\n",
@@ -50,12 +53,9 @@ int		main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 
-	if (init_term() == -1 || manage_term_settings() == -1)
+	if (init_term() == -1 || change_term_settings(&tcaps) == -1)
 		return (EXIT_FAILURE);
-
-	_clear_screen();
-	ft_select(argv + 1);
-
+	ft_select(&tcaps, argv + 1);
 	save_or_restore_settings(RESTORE);
 	return (EXIT_SUCCESS);
 }

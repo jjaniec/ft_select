@@ -6,13 +6,13 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:57:18 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/19 21:35:18 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/20 17:09:36 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-void	_clear_screen(void)
+void	_clear_screen(char *cl)
 {
-	ft_putstr(tgetstr("cl", NULL));
+	ft_putstr(cl);
 }
