@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/20 17:16:17 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/20 19:52:58 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,23 @@
 # include <stdio.h>
 # include <sys/ioctl.h>
 
-
 # define FATAL_ERROR (2)
 # define SAVE (1)
 # define RESTORE (0)
 
-typedef struct			s_term_caps
+typedef struct				s_elems_infos
 {
-	struct termios		tios;
-	struct winsize		ts;
-	char				*clear_s;
-}						t_term_caps;
+	char					**elems;
+	int						width;
+}							t_elems_infos;
+
+typedef struct				s_term_caps
+{
+	struct termios			tios;
+	struct winsize			ts;
+	struct s_elems_infos	e_infos;
+	char					*clear_s;
+}							t_term_caps;
 
 /*
 **	init_term_and_settings.c
@@ -51,5 +57,7 @@ void	save_or_restore_settings(int mode);
 void	_clear_screen(char *cl);
 
 int		get_term_size(struct winsize *ts);
+
+int		get_printing_width(t_elems_infos *e_infos, char **elems);
 
 #endif

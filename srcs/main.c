@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/20 17:44:48 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/20 19:54:53 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_select(t_term_caps *tcaps, char **args)
 	tcaps->clear_s = tgetstr("cl", NULL);
 	_clear_screen(tcaps->clear_s);
 	get_term_size(&(tcaps->ts));
+	//print_args(tcaps, args);
 	while ("ceci est une boucle")
 	{
 		read_key(key);
@@ -55,7 +56,10 @@ int		main(int argc, char **argv)
 
 	if (init_term() == -1 || change_term_settings(&tcaps) == -1)
 		return (EXIT_FAILURE);
-	ft_select(&tcaps, argv + 1);
+	tcaps.e_infos.elems = argv;
+	get_printing_width(&(tcaps.e_infos), argv + 1);
+	printf("printing_width : %d\n", tcaps.e_infos.width);
+	//ft_select(&tcaps, argv + 1);
 	save_or_restore_settings(RESTORE);
 	return (EXIT_SUCCESS);
 }
