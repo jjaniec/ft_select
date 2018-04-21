@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 18:41:22 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 19:49:11 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,13 @@ enum e_save_or_restore_settings_modes
 	RESTORE
 };
 
+# define INIT_SCR	"\e[?1049h"
+# define END_SCR	"\e[?1049l"
+
 typedef struct				s_ft_select_arg
 {
 	char					*str;
+	bool					is_selected;
 	struct s_ft_select_arg	*next;
 }							t_ft_select_arg;
 

@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 17:33:10 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 19:14:44 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 19:53:59 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void		save_or_restore_settings(int mode)
 	{
 		if (tcsetattr(STDIN_FILENO, TCSANOW, &orig_tios) == -1)
 			ft_exit(FATAL_ERROR, "Failure while restoring the originals settings (tcsetattr() failed)\n");
+		ft_putstr(END_SCR);
 	}
 }
 

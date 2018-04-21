@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 19:14:25 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 19:52:22 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void		ft_select(t_term_caps *tcaps)
 {
 	char	key[SZBUFKEY];
 
-	ft_putstr(tcaps->clear_s);
+	ft_putstr(INIT_SCR);
 	get_term_size(&(tcaps->ts));
  	print_args(tcaps, tcaps->e_infos.elems);
 	while ("main loop for user interactions")
