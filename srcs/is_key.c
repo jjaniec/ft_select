@@ -14,29 +14,36 @@
 
 bool	is_key_up_arrow(char *key)
 {
-	if (key[0] == 27 && key[1] == 91 && key[2] == 65)
+	if (key[0] == 27 && key[1] == 91 && key[2] == 65 && key[3] == '\0')
 		return (true);
 	return (false);
 }
 
 bool	is_key_down_arrow(char *key)
 {
-	if (key[0] == 27 && key[1] == 91 && key[2] == 66)
+	if (key[0] == 27 && key[1] == 91 && key[2] == 66 && key[3] == '\0')
 		return (true);
 	return (false);
 }
 
 bool	is_key_left_arrow(char *key)
 {
-	if (key[0] == 27 && key[1] == 91 && key[2] == 68)
+	if (key[0] == 27 && key[1] == 91 && key[2] == 68 && key[3] == '\0')
 		return (true);
 	return (false);
 }
 
 bool	is_key_right_arrow(char *key)
 {
-	if (key[0] == 27 && key[1] == 91 && key[2] == 67)
+	if (key[0] == 27 && key[1] == 91 && key[2] == 67 && key[3] == '\0')
 		return (true);
 	return (false);
 }
 
+bool	is_key_delete(char *key)
+{
+	if (key[0] == 27 && key[1] == 91 && key[2] == 51 && key[3] == 126
+	&& key[4] == '\0')
+		return (true);
+	return (false);
+}

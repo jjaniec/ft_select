@@ -23,6 +23,8 @@ void	handle_escape(void)
 /*
 **	Launch the function linked to the parameter 'key'.
 **	If no function is linked to the key, it does nothing.
+**	Keys recognized : up/down/left/right arrows - 
+**	escape - space - backspace - delete - return.
 */
 
 void	analyze_key(char key[SZBUFKEY])
@@ -35,7 +37,11 @@ void	analyze_key(char key[SZBUFKEY])
 	{
 
 	}
-	else if (key[0] == KEY_DELETE && key[1] == '\0')
+	else if ((key[0] == KEY_BS && key[1] == '\0') || is_key_delete(key))
+	{
+
+	}
+	else if (key[0] == KEY_RETURN && key[1] == '\0')
 	{
 
 	}

@@ -30,9 +30,10 @@
 
 enum e_one_byte_keycodes
 {
+	KEY_RETURN = 10,
 	KEY_ESCAPE = 27,
 	KEY_SPACE = 32,
-	KEY_DELETE = 127
+	KEY_BS = 127
 };
 
 enum e_save_or_restore_settings_modes
@@ -102,6 +103,8 @@ bool	is_key_down_arrow(char *key);
 bool	is_key_left_arrow(char *key);
 
 bool	is_key_right_arrow(char *key);
+
+bool	is_key_delete(char *key);
 
 
 /*
