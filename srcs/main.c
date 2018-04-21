@@ -12,14 +12,14 @@
 
 #include <ft_select.h>
 
-static void		read_key(char key[5])
+static void		read_key(char key[SZBUFKEY])
 {
 	ssize_t	read_ret;
 
 	while ("waiting for a pressed key")
 	{
-		ft_memset(key, 0, 5);
-		read_ret = read(STDIN_FILENO, key, 4);
+		ft_memset(key, '\0', SZBUFKEY);
+		read_ret = read(STDIN_FILENO, key, SZBUFKEY - 1);
 		if (read_ret == -1)
 			ft_exit(FATAL_ERROR, "Call to read() failed\n");
 		if (read_ret > 0)
@@ -29,16 +29,19 @@ static void		read_key(char key[5])
 
 static void		ft_select(t_term_caps *tcaps)
 {
-	char	key[5];
+	char	key[SZBUFKEY];
 
-	tcaps->clear_s = tgetstr("cl", NULL);
 	ft_putstr(tcaps->clear_s);
 	get_term_size(&(tcaps->ts));
-	print_args(tcaps, tcaps->e_infos.elems);
-	while ("ceci est une boucle")
+ 	print_args(tcaps, tcaps->e_infos.elems);
+	while ("main loop for user interactions")
 	{
 		read_key(key);
-		printf("key = |%s|\n", key);
+		analyze_key(key);
+
+		//for (int i = 0 ; key[i] ; ++i) printf("%d\n",key[i] );
+
+		//printf("key = |%s|\n", key);
 		//printf("%d", *key);
 	}
 }
@@ -55,6 +58,7 @@ int				main(int argc, char **argv)
 	}
 	if (init_term() == -1 || change_term_settings(&tcaps) == -1 || init_sig_handlers() == -1)
 		return (EXIT_FAILURE);
+	init_tcaps(&tcaps, argc, argv);
 	tcaps.e_infos.elems = create_args_sorted_list(argv + 1);
 	tcaps.e_infos.elems_count = argc - 1;
 	get_printing_width(&(tcaps.e_infos), argv + 1);

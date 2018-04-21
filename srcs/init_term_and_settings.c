@@ -62,7 +62,7 @@ void		save_or_restore_settings(int mode)
 }
 
 /*
-**	Save the originals settings with save_or_restore_settings() then change them
+**	Save the originals settings with save_or_restore_settings() then change them.
 **	Returns -1 if an error occurs, 0 otherwise.
 */
 
@@ -80,4 +80,17 @@ int			change_term_settings(struct s_term_caps	*tcaps)
 		return (-1);
 	}
 	return (0);
+}
+
+/*
+**	Initialize the main structure of the program
+*/
+
+void	init_tcaps(struct s_term_caps *tcaps, int argc, char **argv)
+{
+	tcaps->e_infos.elems = argv;
+	tcaps->e_infos.elems_count = argc - 1;
+	tcaps->clear_s = tgetstr("cl", NULL);
+	tcaps->movcur_s = tgetstr("cm", NULL);
+	get_printing_width(&(tcaps->e_infos), argv + 1);
 }
