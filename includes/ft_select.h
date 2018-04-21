@@ -22,8 +22,14 @@
 # include <stdio.h>
 # include <sys/ioctl.h>
 # include <signal.h>
+#include <stdbool.h>
 
 # define FATAL_ERROR (2)
+
+# define SZBUFKEY (5)
+
+# define KEY_ESCAPE (27)
+# define KEY_SPACE (32)
 
 # define SAVE (1)
 # define RESTORE (0)
@@ -78,9 +84,19 @@ void	print_args(t_term_caps *tcaps, char **args);
 **	is_key.c
 */
 
-bool	is_key_escape(char *key);
-
 bool	is_key_up_arrow(char *key);
 
+bool	is_key_down_arrow(char *key);
+
+bool	is_key_left_arrow(char *key);
+
+bool	is_key_right_arrow(char *key);
+
+
+/*
+**	analyze_key.c
+*/
+
+void	analyze_key(char key[SZBUFKEY]);
 
 #endif

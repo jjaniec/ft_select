@@ -12,13 +12,6 @@
 
 #include <ft_select.h>
 
-bool	is_key_escape(char *key)
-{
-	if (*key == 27)
-		return (true);
-	return (false);
-}
-
 bool	is_key_up_arrow(char *key)
 {
 	if (key[0] == 27 && key[1] == 91 && key[2] == 65)
@@ -26,23 +19,24 @@ bool	is_key_up_arrow(char *key)
 	return (false);
 }
 
-bool	is_key_down_arrow(char *key) // 3
+bool	is_key_down_arrow(char *key)
 {
-	if (key[0] == 27 && key[1] == 91 && key[2] == 65)
+	if (key[0] == 27 && key[1] == 91 && key[2] == 66)
 		return (true);
 	return (false);
 }
 
-bool	is_key_left_arrow(char *key) // 3
+bool	is_key_left_arrow(char *key)
 {
-	if (key[0] == 27 && key[1] == 91 && key[2] == 65)
+	if (key[0] == 27 && key[1] == 91 && key[2] == 68)
 		return (true);
 	return (false);
 }
 
-bool	is_key_right_arrow(char *key) // 3
+bool	is_key_right_arrow(char *key)
 {
-	if (key[0] == 27 && key[1] == 91 && key[2] == 65)
+	if (key[0] == 27 && key[1] == 91 && key[2] == 67)
 		return (true);
 	return (false);
 }
+

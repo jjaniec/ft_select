@@ -62,7 +62,7 @@ void		save_or_restore_settings(int mode)
 }
 
 /*
-**	Save the originals settings with save_or_restore_settings() then change them
+**	Save the originals settings with save_or_restore_settings() then change them.
 **	Returns -1 if an error occurs, 0 otherwise.
 */
 

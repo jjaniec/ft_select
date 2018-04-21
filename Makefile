@@ -21,7 +21,8 @@ SRC_NAME = init_term_and_settings.c \
 		   print_args.c \
  		   sig_management.c \
 		   main.c \
-		   is_key.c
+		   is_key.c \
+		   analyze_key.c
 
 INCLUDES_NAME = ft_select.h
 

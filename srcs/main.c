@@ -12,14 +12,14 @@
 
 #include <ft_select.h>
 
-void	read_key(char key[5])
+void	read_key(char key[SZBUFKEY])
 {
 	ssize_t	read_ret;
 
 	while ("waiting for a pressed key")
 	{
-		ft_memset(key, 0, 5);
-		read_ret = read(STDIN_FILENO, key, 4);
+		ft_memset(key, '\0', SZBUFKEY);
+		read_ret = read(STDIN_FILENO, key, SZBUFKEY - 1);
 		if (read_ret == -1)
 			ft_exit(FATAL_ERROR, "Call to read() failed\n");
 		if (read_ret > 0)
@@ -29,7 +29,7 @@ void	read_key(char key[5])
 
 void	ft_select(t_term_caps *tcaps, char **args)
 {
-	char	key[5];
+	char	key[SZBUFKEY];
 
 	tcaps->clear_s = tgetstr("cl", NULL);
 	ft_putstr(tcaps->clear_s);
@@ -38,8 +38,9 @@ void	ft_select(t_term_caps *tcaps, char **args)
 	while ("ceci est une boucle")
 	{
 		read_key(key);
+		analyze_key(key);
 
-		for (int i = 0 ; key[i] ; ++i) printf("%d\n", key[i]);
+		//for (int i = 0 ; key[i] ; ++i) printf("%d\n",key[i] );
 
 		//printf("key = |%s|\n", key);
 		//printf("%d", *key);
