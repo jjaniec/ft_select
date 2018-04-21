@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:59:08 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/20 20:58:06 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 21:43:13 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		get_term_size(struct winsize *ts)
 {
 	if (-1 == ioctl(STDOUT_FILENO, TIOCGWINSZ, ts))
 	{
-		save_or_restore_settings(RESTORE);
+		save_restore_term_settings(RESTORE);
 		ft_exit(FATAL_ERROR, "ft_select: Failed to get terminal size\n");
 	}
 	printf("lines %d\n", ts->ws_row);

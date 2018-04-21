@@ -6,11 +6,15 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 19:52:22 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 21:43:54 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
+
+/*
+** Read user input and store it in key
+*/
 
 static void		read_key(char key[SZBUFKEY])
 {
@@ -27,18 +31,35 @@ static void		read_key(char key[SZBUFKEY])
 	}
 }
 
+/*
+** Print cli arguments and anylyse input in a loop
+*/
+
 static void		ft_select(t_term_caps *tcaps)
 {
 	char	key[SZBUFKEY];
 
 	ft_putstr(INIT_SCR);
 	get_term_size(&(tcaps->ts));
- 	print_args(tcaps, tcaps->e_infos.elems);
+	print_args(tcaps, tcaps->e_infos.elems);
 	while ("main loop for user interactions")
 	{
 		read_key(key);
 		analyze_key(key);
 	}
+}
+
+/*
+**	Initialize the main structure of the program
+*/
+
+static void		init_tcaps(struct s_term_caps *tcaps, int argc, char **argv)
+{
+	tcaps->e_infos.elems = create_args_sorted_list(argv + 1);
+	tcaps->e_infos.elems_count = argc - 1;
+	tcaps->clear_s = tgetstr("cl", NULL);
+	tcaps->movcur_s = tgetstr("cm", NULL);
+	get_printing_width(&(tcaps->e_infos), argv + 1);
 }
 
 int				main(int argc, char **argv)
@@ -51,12 +72,13 @@ int				main(int argc, char **argv)
 		STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	if (init_term() == -1 || change_term_settings(&tcaps) == -1 || init_sig_handlers() == -1)
+	if (init_term() == -1 || change_term_settings(&tcaps) == -1 || \
+		init_sig_handlers() == -1)
 		return (EXIT_FAILURE);
 	init_tcaps(&tcaps, argc, argv);
 	get_printing_width(&(tcaps.e_infos), argv + 1);
 	ft_select(&tcaps);
 	free_args_list(tcaps.e_infos.elems);
-	save_or_restore_settings(RESTORE);
+	save_restore_term_settings(RESTORE);
 	return (EXIT_SUCCESS);
 }
