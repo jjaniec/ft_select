@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/20 21:05:44 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 16:57:04 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@
 
 # define SAVE (1)
 # define RESTORE (0)
+
+typedef struct				s_ft_select_arg
+{
+	char					*str;
+	struct s_ft_select_arg	*next;
+}							t_ft_select_arg;
 
 typedef struct				s_elems_infos
 {
@@ -73,5 +79,10 @@ int		get_printing_width(t_elems_infos *e_infos, char **elems);
 */
 
 void	print_args(t_term_caps *tcaps, char **args);
+
+
+t_ft_select_arg			*create_args_sorted_list(char **args);
+
+t_ft_select_arg		*create_ft_select_arg_struct(char *argptr);
 
 #endif
