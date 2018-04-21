@@ -6,7 +6,7 @@
 #    By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 17:27:33 by jjaniec           #+#    #+#              #
-#    Updated: 2018/04/21 16:50:14 by jjaniec          ###   ########.fr        #
+#    Updated: 2018/04/21 18:41:13 by jjaniec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC_NAME = init_term_and_settings.c \
  		   sig_management.c \
 		   create_ft_select_struct.c \
 		   create_args_sorted_list.c \
+		   free_args_list.c \
 		   main.c
 
 INCLUDES_NAME = ft_select.h

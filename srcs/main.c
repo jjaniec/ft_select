@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 18:33:50 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 18:43:49 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int				main(int argc, char **argv)
 	tcaps.e_infos.elems_count = argc - 1;
 	get_printing_width(&(tcaps.e_infos), argv + 1);
 	ft_select(&tcaps);
+	free_args_list(tcaps.e_infos.elems);
 	save_or_restore_settings(RESTORE);
 	return (EXIT_SUCCESS);
 }
