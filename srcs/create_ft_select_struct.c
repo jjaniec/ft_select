@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 16:27:01 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/21 16:31:01 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 21:04:26 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_ft_select_arg		*create_ft_select_arg_struct(char *argptr)
 
 	if (!(e = malloc(sizeof(t_ft_select_arg))))
 		exit(EXIT_FAILURE);
+	e->is_selected = false;
 	e->str = argptr;
 	e->next = NULL;
 	return (e);
