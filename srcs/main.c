@@ -31,11 +31,10 @@ void	ft_select(t_term_caps *tcaps, char **args)
 {
 	char	key[SZBUFKEY];
 
-	tcaps->clear_s = tgetstr("cl", NULL);
 	ft_putstr(tcaps->clear_s);
 	get_term_size(&(tcaps->ts));
 	print_args(tcaps, args);
-	while ("ceci est une boucle")
+	while ("main loop for user interactions")
 	{
 		read_key(key);
 		analyze_key(key);
@@ -60,9 +59,8 @@ int		main(int argc, char **argv)
 
 	if (init_term() == -1 || change_term_settings(&tcaps) == -1 || init_sig_handlers() == -1)
 		return (EXIT_FAILURE);
-	tcaps.e_infos.elems = argv;
-	tcaps.e_infos.elems_count = argc - 1;
-	get_printing_width(&(tcaps.e_infos), argv + 1);
+
+	init_tcaps(&tcaps, argc, argv);
 	ft_select(&tcaps, argv + 1);
 	save_or_restore_settings(RESTORE);
 	return (EXIT_SUCCESS);

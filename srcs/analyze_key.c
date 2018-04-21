@@ -12,9 +12,10 @@
 
 #include <ft_select.h>
 
+// cette fonction sera ptet deplacee dans un autre fichier
 void	handle_escape(void)
 {
-
+	// ptet faire des free avant de quitter ...
 	save_or_restore_settings(RESTORE);
 	exit(EXIT_SUCCESS);
 }
@@ -31,6 +32,10 @@ void	analyze_key(char key[SZBUFKEY])
 		handle_escape();
 	}
 	else if (key[0] == KEY_SPACE && key[1] == '\0')
+	{
+
+	}
+	else if (key[0] == KEY_DELETE && key[1] == '\0')
 	{
 
 	}

@@ -28,11 +28,18 @@
 
 # define SZBUFKEY (5)
 
-# define KEY_ESCAPE (27)
-# define KEY_SPACE (32)
+enum e_one_byte_keycodes
+{
+	KEY_ESCAPE = 27,
+	KEY_SPACE = 32,
+	KEY_DELETE = 127
+};
 
-# define SAVE (1)
-# define RESTORE (0)
+enum e_save_or_restore_settings_modes
+{
+	SAVE,
+	RESTORE
+};
 
 typedef struct				s_elems_infos
 {
@@ -48,6 +55,7 @@ typedef struct				s_term_caps
 	struct winsize			ts;
 	struct s_elems_infos	e_infos;
 	char					*clear_s;
+	char					*movcur_s;
 }							t_term_caps;
 
 /*
@@ -59,6 +67,9 @@ int		init_term(void);
 int		change_term_settings(struct s_term_caps	*tcaps);
 
 void	save_or_restore_settings(int mode);
+
+void	init_tcaps(struct s_term_caps *tcaps, int argc, char **argv);
+
 
 /*
 **	get_term_size.c

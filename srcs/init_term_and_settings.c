@@ -81,3 +81,16 @@ int			change_term_settings(struct s_term_caps	*tcaps)
 	}
 	return (0);
 }
+
+/*
+**	Initialize the main structure of the program
+*/
+
+void	init_tcaps(struct s_term_caps *tcaps, int argc, char **argv)
+{
+	tcaps->e_infos.elems = argv;
+	tcaps->e_infos.elems_count = argc - 1;
+	tcaps->clear_s = tgetstr("cl", NULL);
+	tcaps->movcur_s = tgetstr("cm", NULL);
+	get_printing_width(&(tcaps->e_infos), argv + 1);
+}
