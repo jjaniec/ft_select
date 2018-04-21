@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 16:57:04 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 17:13:42 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct				s_ft_select_arg
 
 typedef struct				s_elems_infos
 {
-	char					**elems;
+	struct s_ft_select_arg	*elems;
 	unsigned int			elems_count;
 	int						width;
 	unsigned int			elems_per_row;
@@ -78,8 +78,7 @@ int		get_printing_width(t_elems_infos *e_infos, char **elems);
 ** print_args.c
 */
 
-void	print_args(t_term_caps *tcaps, char **args);
-
+void	print_args(t_term_caps *tcaps, t_ft_select_arg *li);
 
 t_ft_select_arg			*create_args_sorted_list(char **args);
 

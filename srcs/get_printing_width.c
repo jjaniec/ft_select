@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 19:43:16 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/20 21:11:31 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 17:54:50 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		get_printing_width(t_elems_infos *e_infos, char **elems)
 	int		x;
 	int		i;
 
+	e_infos->width = 0;
 	i = -1;
 	if (!elems || (elems && !(elems[0])))
 		return (-1);

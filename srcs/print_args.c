@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 19:35:03 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/20 21:17:55 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 18:34:09 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,29 @@ static unsigned int		get_elems_per_row(t_term_caps *tcaps)
 		tcaps->ts.ws_col / (tcaps->e_infos.width + 2));
 }
 
-void					print_args(t_term_caps *tcaps, char **args)
+void					print_args(t_term_caps *tcaps, t_ft_select_arg *li)
 {
-	int				i;
 	unsigned int	j;
+	t_ft_select_arg	*ptr;
 
-	i = -1;
 	j = 0;
 	if (tcaps->e_infos.width > 0)
 		get_elems_per_row(tcaps);
 	printf("elems/row: %d\n", tcaps->e_infos.elems_per_row);
-	while (args[++i])
+	ptr = li;
+	while (ptr)
 	{
 		if (tcaps->e_infos.width > 0)
-			printf("%-*s", (int)tcaps->e_infos.width + 2, args[i]);
+			printf("%-*s", (int)tcaps->e_infos.width + 2, ptr->str);
 		else
-			printf("%-*s", (int)ft_strlen(args[i]) + 2, args[i]);
+			printf("%-*s", (int)ft_strlen(ptr->str) + 2, ptr->str);
 		j++;
 		if (j == tcaps->e_infos.elems_per_row)
 		{
 			printf("\n");
 			j = 0;
 		}
+		ptr = ptr->next;
 	}
 	printf("\n");
 }
