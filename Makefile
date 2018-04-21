@@ -21,7 +21,7 @@ SRC_NAME = init_term_and_settings.c \
 		   print_args.c \
  		   sig_management.c \
 		   is_key.c \
-		   analyze_key.c
+		   analyze_key.c \
 		   create_ft_select_struct.c \
 		   create_args_sorted_list.c \
 		   free_args_list.c \
