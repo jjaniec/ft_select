@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_printing_width.c                               :+:      :+:    :+:   */
+/*   create_ft_select_struct.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/20 19:43:16 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/21 17:54:50 by jjaniec          ###   ########.fr       */
+/*   Created: 2018/04/21 16:27:01 by jjaniec           #+#    #+#             */
+/*   Updated: 2018/04/21 16:31:01 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
 /*
-** Cycle through a char ** to find the lenght of the largest element,
-** Return -1 if passed char ** is NULL or has a lenght of 0
+** Creates a t_ft_select struct, set it's $str ptr to $argptr and next to NULL
 */
 
-int		get_printing_width(t_elems_infos *e_infos, char **elems)
+t_ft_select_arg		*create_ft_select_arg_struct(char *argptr)
 {
-	int		x;
-	int		i;
+	t_ft_select_arg		*e;
 
-	e_infos->width = 0;
-	i = -1;
-	if (!elems || (elems && !(elems[0])))
-		return (-1);
-	while (elems[++i])
-	{
-		x = ft_strlen(elems[i]);
-		if (x > e_infos->width)
-			e_infos->width = x;
-	}
-	return (0);
+	if (!(e = malloc(sizeof(t_ft_select_arg))))
+		exit(EXIT_FAILURE);
+	e->str = argptr;
+	e->next = NULL;
+	return (e);
 }

@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_printing_width.c                               :+:      :+:    :+:   */
+/*   free_args_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/20 19:43:16 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/21 17:54:50 by jjaniec          ###   ########.fr       */
+/*   Created: 2018/04/21 18:38:58 by jjaniec           #+#    #+#             */
+/*   Updated: 2018/04/21 18:40:55 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
 /*
-** Cycle through a char ** to find the lenght of the largest element,
-** Return -1 if passed char ** is NULL or has a lenght of 0
+** Frees created linked list to sort cli arguments
 */
 
-int		get_printing_width(t_elems_infos *e_infos, char **elems)
+void		free_args_list(t_ft_select_arg *li)
 {
-	int		x;
-	int		i;
+	t_ft_select_arg	*prev;
 
-	e_infos->width = 0;
-	i = -1;
-	if (!elems || (elems && !(elems[0])))
-		return (-1);
-	while (elems[++i])
+	while (li)
 	{
-		x = ft_strlen(elems[i]);
-		if (x > e_infos->width)
-			e_infos->width = x;
+		prev = li;
+		li = li->next;
+		free(prev);
 	}
-	return (0);
 }
