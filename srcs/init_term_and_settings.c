@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 17:33:10 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/20 17:33:40 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 19:14:44 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int			change_term_settings(struct s_term_caps	*tcaps)
 
 void	init_tcaps(struct s_term_caps *tcaps, int argc, char **argv)
 {
-	tcaps->e_infos.elems = argv;
+	tcaps->e_infos.elems = create_args_sorted_list(argv + 1);
 	tcaps->e_infos.elems_count = argc - 1;
 	tcaps->clear_s = tgetstr("cl", NULL);
 	tcaps->movcur_s = tgetstr("cm", NULL);

@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 18:43:49 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 19:14:25 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ static void		ft_select(t_term_caps *tcaps)
 	{
 		read_key(key);
 		analyze_key(key);
-
-		//for (int i = 0 ; key[i] ; ++i) printf("%d\n",key[i] );
-
-		//printf("key = |%s|\n", key);
-		//printf("%d", *key);
 	}
 }
 
@@ -59,8 +54,6 @@ int				main(int argc, char **argv)
 	if (init_term() == -1 || change_term_settings(&tcaps) == -1 || init_sig_handlers() == -1)
 		return (EXIT_FAILURE);
 	init_tcaps(&tcaps, argc, argv);
-	tcaps.e_infos.elems = create_args_sorted_list(argv + 1);
-	tcaps.e_infos.elems_count = argc - 1;
 	get_printing_width(&(tcaps.e_infos), argv + 1);
 	ft_select(&tcaps);
 	free_args_list(tcaps.e_infos.elems);
