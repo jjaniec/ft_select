@@ -12,6 +12,10 @@
 
 #include <ft_select.h>
 
+t_term_caps 		*g_tcaps;
+
+t_ft_select_arg 	*g_li;
+
 /*
 ** Read user input and store it in key
 */
@@ -78,6 +82,8 @@ int				main(int argc, char **argv)
 		init_sig_handlers() == -1)
 		return (EXIT_FAILURE);
 	init_tcaps(&tcaps, argc, argv);
+	g_tcaps = &tcaps;
+	g_li = tcaps.e_infos.elems;
 	ft_select(&tcaps);
 	free_args_list(tcaps.e_infos.elems);
 	save_restore_term_settings(RESTORE);

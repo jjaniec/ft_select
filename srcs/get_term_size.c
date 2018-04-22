@@ -24,6 +24,6 @@ void		get_term_size(struct winsize *ts)
 		save_restore_term_settings(RESTORE);
 		ft_exit(FATAL_ERROR, "ft_select: Failed to get terminal size\n");
 	}
-	printf("lines %d\n", ts->ws_row);
-	printf("columns %d\n", ts->ws_col);
+	//printf("lines %d\n", ts->ws_row);
+	//printf("columns %d\n", ts->ws_col);
 }
