@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 21:42:43 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 22:31:14 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 # include <stdbool.h>
 
 # define FORMAT_RESET "\e[0m"
-# define ELEM_SELECTED "\e[7m"
+# define ELEM_SELECTED_FMT "\e[7m"
+# define CURSOR_POS_FMT "\e[4m"
 
 # define FATAL_ERROR (2)
 
@@ -51,7 +52,7 @@ enum						e_save_restore_term_settings_modes
 typedef struct				s_ft_select_arg
 {
 	char					*str;
-	bool					is_selected;
+	bool					selected;
 	struct s_ft_select_arg	*prev;
 	struct s_ft_select_arg	*next;
 }							t_ft_select_arg;
