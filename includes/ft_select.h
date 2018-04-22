@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/22 13:27:54 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/22 18:59:50 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,5 +159,12 @@ int							init_sig_handlers(void);
 int							init_term(void);
 
 int							change_term_settings(struct s_term_caps	*tcaps);
+
+/*
+** cursor_movement.c
+*/
+
+t_ft_select_arg				*move_cursor_index(int move_pos, \
+								t_ft_select_arg *args_ptr);
 
 #endif
