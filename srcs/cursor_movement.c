@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/22 18:27:22 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/22 18:55:56 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/22 20:45:00 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,39 @@
 ** return the pointer of the found element
 */
 
-static void			move_cursor_next(t_ft_select_arg **ptr)
+static void			move_cursor_next(t_term_caps *tcaps, t_ft_select_arg **ptr)
 {
 	if (ptr && *ptr)
-		*ptr = (*ptr)->next;
+	{
+		if ((*ptr)->next)
+			*ptr = (*ptr)->next;
+		else
+			*ptr = tcaps->e_infos.elems_first;
+	}
 }
 
-static void			move_cursor_prev(t_ft_select_arg **ptr)
+static void			move_cursor_prev(t_term_caps *tcaps, t_ft_select_arg **ptr)
 {
 	if (ptr && *ptr)
-		*ptr = (*ptr)->prev;
+	{
+		if ((*ptr)->prev)
+			*ptr = (*ptr)->prev;
+		else
+			*ptr = tcaps->e_infos.elems_last;
+	}
 }
 
-t_ft_select_arg		*move_cursor_index(int move_pos, t_ft_select_arg *args_ptr)
+t_ft_select_arg		*move_cursor_index(t_term_caps *tcaps, int move_pos, \
+						t_ft_select_arg *args_ptr)
 {
 	t_ft_select_arg	*ptr;
 
 	ptr = args_ptr;
 	if (args_ptr && move_pos > 0)
 		while (move_pos-- > 0 && ptr)
-			move_cursor_next(&ptr);
+			move_cursor_next(tcaps, &ptr);
 	else if (args_ptr && move_pos < 0)
 		while (move_pos++ < 0 && ptr)
-			move_cursor_prev(&ptr);
+			move_cursor_prev(tcaps, &ptr);
 	return (ptr);
 }
