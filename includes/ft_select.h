@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/22 20:43:03 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/22 21:02:02 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct				s_term_caps
 ** analyze_key.c
 */
 
-void						analyze_key(char key[SZBUFKEY]);
+void						analyze_key(t_term_caps *tcaps, char key[SZBUFKEY]);
 
 /*
 ** create_args_sorted_list.c
