@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/22 18:59:50 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/22 20:43:03 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct				s_ft_select_arg
 typedef struct				s_elems_infos
 {
 	struct s_ft_select_arg	*elems;
+	struct s_ft_select_arg	*elems_first;
+	struct s_ft_select_arg	*elems_last;
 	unsigned int			elems_count;
 	int						width;
 	unsigned int			elems_per_row;
@@ -86,7 +88,8 @@ void						analyze_key(char key[SZBUFKEY]);
 ** create_args_sorted_list.c
 */
 
-t_ft_select_arg				*create_args_sorted_list(char **args);
+t_ft_select_arg				*create_args_sorted_list(t_term_caps *tcaps, \
+								char **args);
 
 /*
 ** create_ft_select_struct.c
@@ -164,7 +167,7 @@ int							change_term_settings(struct s_term_caps	*tcaps);
 ** cursor_movement.c
 */
 
-t_ft_select_arg				*move_cursor_index(int move_pos, \
-								t_ft_select_arg *args_ptr);
+t_ft_select_arg				*move_cursor_index(t_term_caps *tcaps, \
+								int move_pos, t_ft_select_arg *args_ptr);
 
 #endif
