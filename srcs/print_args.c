@@ -58,6 +58,17 @@ static void				print_arg_fmt(t_term_caps *tcaps, t_ft_select_arg *e)
 }
 
 /*
+**	If the window's size is too small,
+*	print an error message instead of the args.
+*/
+
+static void				print_win_too_small(const char *clear_s)
+{
+	ft_putstr(clear_s);
+	ft_putstr("WIN TOO SMALL");
+}
+
+/*
 ** Calls print_arg_fmt on every element in the linked list,
 ** prints a newline when necessary
 */
@@ -69,7 +80,11 @@ void					print_args(t_term_caps *tcaps, t_ft_select_arg *li)
 
 	j = 0;
 	if (tcaps->e_infos.width > 0)
-		get_elems_per_row(tcaps);
+		if (get_elems_per_row(tcaps) == 0)
+		{
+			print_win_too_small(tcaps->clear_s);
+			return ;
+		}
 	printf("elems/row: %d\n", tcaps->e_infos.elems_per_row);
 	ptr = li;
 	while (ptr)

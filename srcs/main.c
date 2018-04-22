@@ -12,6 +12,9 @@
 
 #include <ft_select.h>
 
+t_term_caps 		*g_tcaps;
+t_ft_select_arg 	*g_li;
+
 /*
 ** Read user input and store it in key
 */

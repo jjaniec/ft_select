@@ -12,6 +12,9 @@
 
 #include <ft_select.h>
 
+extern t_term_caps 		*g_tcaps;
+extern t_ft_select_arg 	*g_li;
+
 static void		handle_sigint(int sig)
 {
 	save_restore_term_settings(RESTORE);
@@ -21,9 +24,11 @@ static void		handle_sigint(int sig)
 static void	handle_sigwinch(int sig)
 {
 	(void)sig;
-	/* resize window so re-draw some things.
-	 First, calculate if it's possible to re-print the args, 
-	 if not just print an error msg as "window too small" */
+
+
+
+
+
 }
 
 /*
