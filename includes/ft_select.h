@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/22 20:22:10 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/22 20:34:54 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void						analyze_key(char key[SZBUFKEY]);
 ** create_args_sorted_list.c
 */
 
-t_ft_select_arg				*create_args_sorted_list(char **args);
+t_ft_select_arg				*create_args_sorted_list(t_term_caps *tcaps, \
+								char **args);
 
 /*
 ** create_ft_select_struct.c
