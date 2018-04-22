@@ -21,14 +21,12 @@ static void		handle_sigint(int sig)
 	exit(sig);
 }
 
-static void	handle_sigwinch(int sig)
+static void		handle_sigwinch(int sig)
 {
 	(void)sig;
-
-
-
-
-
+	ft_putstr(g_tcaps->clear_s);
+	get_term_size(&(g_tcaps->ts));
+	print_args(g_tcaps, g_li);
 }
 
 /*
