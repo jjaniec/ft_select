@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 16:36:37 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/21 18:31:11 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/22 13:37:59 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,32 @@ static void				skip_args(t_ft_select_arg **ptr, \
 
 /*
 ** Use skip_args to append element to the linked list,
-** if previous is equal to NULL after skip_args has been called, the beginning of
-** the linked list is changed as the value of new and new->next will be equal to li
+** if previous is equal to NULL after skip_args has been called,
+** the beginning of the linked list is changed as the value of new
+** and new->next will be equal to li
 */
 
 static t_ft_select_arg	*append_arg(t_ft_select_arg *li, t_ft_select_arg *new)
 {
 	t_ft_select_arg	*ptr;
-	t_ft_select_arg	*prev;
+	t_ft_select_arg	*prev_e;
 
 	ptr = li;
-	prev = NULL;
+	prev_e = NULL;
 	if (li && new)
 	{
-		skip_args(&ptr, &prev, new);
-		if (!prev)
+		skip_args(&ptr, &prev_e, new);
+		if (!prev_e)
 		{
 			new->next = li;
+			new->prev = NULL;
+			new->next->prev = new;
 			return (new);
 		}
-		prev->next = new;
+		prev_e->next = new;
+		new->prev = prev_e;
 		new->next = ptr;
+		ptr->prev = new;
 		return (li);
 	}
 	return (li);
@@ -80,11 +85,11 @@ t_ft_select_arg			*create_args_sorted_list(char **args)
 	{
 		if (!li)
 		{
-			li = create_ft_select_arg_struct(args[i]);
+			li = create_ft_select_arg_struct(args[i], NULL);
 			r = li;
 		}
 		else
-			li = append_arg(li, create_ft_select_arg_struct(args[i]));
+			li = append_arg(li, create_ft_select_arg_struct(args[i], NULL));
 		i++;
 	}
 	return (li);

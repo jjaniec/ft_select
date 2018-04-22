@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 21:42:43 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/22 18:59:50 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 # include <stdbool.h>
 
 # define FORMAT_RESET "\e[0m"
-# define ELEM_SELECTED "\e[7m"
+# define ELEM_SELECTED_FMT "\e[7m"
+# define CURSOR_POS_FMT "\e[4m"
 
 # define FATAL_ERROR (2)
 
@@ -51,7 +52,7 @@ enum						e_save_restore_term_settings_modes
 typedef struct				s_ft_select_arg
 {
 	char					*str;
-	bool					is_selected;
+	bool					selected;
 	struct s_ft_select_arg	*prev;
 	struct s_ft_select_arg	*next;
 }							t_ft_select_arg;
@@ -91,7 +92,8 @@ t_ft_select_arg				*create_args_sorted_list(char **args);
 ** create_ft_select_struct.c
 */
 
-t_ft_select_arg				*create_ft_select_arg_struct(char *argptr);
+t_ft_select_arg				*create_ft_select_arg_struct(char *argptr, \
+								t_ft_select_arg *prev_elem_ptr);
 
 /*
 ** free_args_list.c
@@ -157,5 +159,12 @@ int							init_sig_handlers(void);
 int							init_term(void);
 
 int							change_term_settings(struct s_term_caps	*tcaps);
+
+/*
+** cursor_movement.c
+*/
+
+t_ft_select_arg				*move_cursor_index(int move_pos, \
+								t_ft_select_arg *args_ptr);
 
 #endif

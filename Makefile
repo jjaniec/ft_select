@@ -6,7 +6,7 @@
 #    By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 17:27:33 by jjaniec           #+#    #+#              #
-#    Updated: 2018/04/21 21:46:45 by jjaniec          ###   ########.fr        #
+#    Updated: 2018/04/22 19:00:44 by jjaniec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC_NAME = analyze_key.c \
 		   save_restore_term_settings.c \
 		   sig_management.c \
 		   update_term.c \
+		   cursor_movement.c \
 		   main.c
 
 INCLUDES_NAME = ft_select.h
