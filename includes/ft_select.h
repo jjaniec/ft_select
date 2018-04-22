@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 21:01:14 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/21 21:42:43 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define INIT_SCR	"\e[?1049h"
 # define END_SCR	"\e[?1049l"
 
-enum e_one_byte_keycodes
+enum						e_one_byte_keycodes
 {
 	KEY_RETURN = 10,
 	KEY_ESCAPE = 27,
@@ -42,7 +42,7 @@ enum e_one_byte_keycodes
 	KEY_BS = 127
 };
 
-enum e_save_or_restore_settings_modes
+enum						e_save_restore_term_settings_modes
 {
 	SAVE,
 	RESTORE
@@ -70,68 +70,92 @@ typedef struct				s_term_caps
 	struct winsize			ts;
 	struct s_elems_infos	e_infos;
 	char					*clear_s;
+	t_ft_select_arg			*cursor_pos_ptr;
 	char					*movcur_s;
+
 }							t_term_caps;
 
 /*
-**	init_term_and_settings.c
+** analyze_key.c
 */
 
-int		init_term(void);
+void						analyze_key(char key[SZBUFKEY]);
 
-int		change_term_settings(struct s_term_caps	*tcaps);
+/*
+** create_args_sorted_list.c
+*/
 
-void	save_or_restore_settings(int mode);
+t_ft_select_arg				*create_args_sorted_list(char **args);
 
-void	init_tcaps(struct s_term_caps *tcaps, int argc, char **argv);
+/*
+** create_ft_select_struct.c
+*/
 
+t_ft_select_arg				*create_ft_select_arg_struct(char *argptr);
+
+/*
+** free_args_list.c
+*/
+
+void						free_args_list(t_ft_select_arg *li);
+
+/*
+** get_printing_width.c
+*/
+
+int							get_printing_width(t_elems_infos *e_infos, \
+								char **elems);
 
 /*
 **	get_term_size.c
 */
 
-void	get_term_size(struct winsize *ts);
+void						get_term_size(struct winsize *ts);
 
 /*
-**	sig_management.c
+** handle_key_action.c
 */
 
-int		init_sig_handlers(void);
-
-int		get_printing_width(t_elems_infos *e_infos, char **elems);
-
-/*
-** print_args.c
-*/
-
-void	print_args(t_term_caps *tcaps, t_ft_select_arg *li);
-
-t_ft_select_arg			*create_args_sorted_list(char **args);
-
-t_ft_select_arg		*create_ft_select_arg_struct(char *argptr);
-
-void		free_args_list(t_ft_select_arg *li);
-
+void						handle_escape(void);
 
 /*
 **	is_key.c
 */
 
-bool	is_key_up_arrow(char *key);
+bool						is_key_up_arrow(char *key);
 
-bool	is_key_down_arrow(char *key);
+bool						is_key_down_arrow(char *key);
 
-bool	is_key_left_arrow(char *key);
+bool						is_key_left_arrow(char *key);
 
-bool	is_key_right_arrow(char *key);
+bool						is_key_right_arrow(char *key);
 
-bool	is_key_delete(char *key);
-
+bool						is_key_delete(char *key);
 
 /*
-**	analyze_key.c
+** print_args.c
 */
 
-void	analyze_key(char key[SZBUFKEY]);
+void						print_args(t_term_caps *tcaps, t_ft_select_arg *li);
+
+/*
+** save_restore_term_settings.c
+*/
+
+void						save_restore_term_settings(int mode);
+
+/*
+** sig_management.c
+*/
+
+int							init_sig_handlers(void);
+
+/*
+** update_term.c
+*/
+
+int							init_term(void);
+
+int							change_term_settings(struct s_term_caps	*tcaps);
 
 #endif
