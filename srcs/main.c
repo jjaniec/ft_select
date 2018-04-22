@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 22:33:14 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/22 20:30:53 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,14 @@ static void		ft_select(t_term_caps *tcaps)
 static void		init_tcaps(struct s_term_caps *tcaps, int argc, char **argv)
 {
 	tcaps->e_infos.elems = create_args_sorted_list(argv + 1);
+	tcaps->e_infos.elems_first = tcaps->e_infos.elems;
 	tcaps->e_infos.elems_count = argc - 1;
 	tcaps->clear_s = tgetstr("cl", NULL);
 	tcaps->movcur_s = tgetstr("cm", NULL);
 	get_printing_width(&(tcaps->e_infos), argv + 1);
 	tcaps->cursor_pos_ptr = tcaps->e_infos.elems;
+//	tcaps->cursor_pos_ptr = move_cursor_index(2, tcaps->cursor_pos_ptr);
+//	tcaps->cursor_pos_ptr = move_cursor_index(-2, tcaps->cursor_pos_ptr);
 }
 
 int				main(int argc, char **argv)

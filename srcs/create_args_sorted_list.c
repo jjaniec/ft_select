@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 16:36:37 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/22 13:37:59 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/22 20:29:34 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static t_ft_select_arg	*append_arg(t_ft_select_arg *li, t_ft_select_arg *new)
 		prev_e->next = new;
 		new->prev = prev_e;
 		new->next = ptr;
-		ptr->prev = new;
+		if (ptr)
+			ptr->prev = new;
 		return (li);
 	}
 	return (li);

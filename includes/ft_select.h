@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/22 18:59:50 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/22 20:22:10 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct				s_ft_select_arg
 typedef struct				s_elems_infos
 {
 	struct s_ft_select_arg	*elems;
+	struct s_ft_select_arg	*elems_first;
+	struct s_ft_select_arg	*elems_last;
 	unsigned int			elems_count;
 	int						width;
 	unsigned int			elems_per_row;
