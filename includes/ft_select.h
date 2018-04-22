@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 22:31:14 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/22 13:27:54 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ t_ft_select_arg				*create_args_sorted_list(char **args);
 ** create_ft_select_struct.c
 */
 
-t_ft_select_arg				*create_ft_select_arg_struct(char *argptr);
+t_ft_select_arg				*create_ft_select_arg_struct(char *argptr, \
+								t_ft_select_arg *prev_elem_ptr);
 
 /*
 ** free_args_list.c
