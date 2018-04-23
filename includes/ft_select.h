@@ -35,6 +35,10 @@
 # define INIT_SCR	"\e[?1049h"
 # define END_SCR	"\e[?1049l"
 
+# define COLOR_BACK_WHITE  "\x1B[47m"
+# define COLOR_CAR_BLUE  "\x1B[34m"
+# define END_COLOR	"\x1B[0m"
+
 enum						e_one_byte_keycodes
 {
 	KEY_RETURN = 10,
@@ -77,6 +81,12 @@ typedef struct				s_term_caps
 	char					*movcur_s;
 
 }							t_term_caps;
+
+/*
+**	main.c
+*/
+
+void						print_escape_msg(void);
 
 /*
 ** analyze_key.c

@@ -27,6 +27,7 @@ static void		handle_sigwinch(int sig)
 	ft_putstr(g_tcaps->clear_s);
 	get_term_size(&(g_tcaps->ts));
 	print_args(g_tcaps, g_li);
+	print_escape_msg();
 }
 
 /*
@@ -38,9 +39,7 @@ int				init_sig_handlers(void)
 {
 	if (signal(SIGINT, &(handle_sigint)) == SIG_ERR)
 		return (-1);
-
 	if (signal(SIGWINCH, &(handle_sigwinch)) == SIG_ERR)
 		return (-1);
-
 	return (0);
 }

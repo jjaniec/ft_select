@@ -30,7 +30,6 @@ void		save_restore_term_settings(int mode)
 	}
 	else if (mode == RESTORE)
 	{
-		ft_putstr(tgetstr("ve", NULL));
 		if (tcsetattr(STDIN_FILENO, TCSANOW, &orig_tios) == -1)
 			ft_exit(FATAL_ERROR, \
 				"Failure while restoring the originals settings (tcsetattr() failed)\n");

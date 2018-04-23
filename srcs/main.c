@@ -17,6 +17,20 @@ t_term_caps 		*g_tcaps;
 t_ft_select_arg 	*g_li;
 
 /*
+**	Print a message to say how to quit the program.
+*/
+
+void			print_escape_msg(void)
+{
+	ft_putstr(tgoto(g_tcaps->movcur_s, g_tcaps->ts.ws_col - 21, \
+	g_tcaps->ts.ws_row));
+	ft_putstr(COLOR_BACK_WHITE);
+	ft_putstr(COLOR_CAR_BLUE);
+	ft_putstr(" PRESS ESCAPE TO QUIT");
+	ft_putstr(END_COLOR);
+}
+
+/*
 ** Read user input and store it in key
 */
 
@@ -29,7 +43,18 @@ static void		read_key(char key[SZBUFKEY])
 		ft_memset(key, '\0', SZBUFKEY);
 		read_ret = read(STDIN_FILENO, key, SZBUFKEY - 1);
 		if (read_ret == -1)
-			ft_exit(FATAL_ERROR, "Call to read() failed\n");
+		{
+			if (errno == EINTR)
+			{
+				save_restore_term_settings(RESTORE);
+				change_term_settings(g_tcaps);
+				ft_putstr(INIT_SCR);
+				get_term_size(&(g_tcaps->ts));
+				print_args(g_tcaps, g_li);
+			}
+			else
+				ft_exit(FATAL_ERROR, "Call to read() failed\n");
+		}
 		if (read_ret > 0)
 			break ;
 	}
@@ -43,11 +68,12 @@ static void		ft_select(t_term_caps *tcaps)
 {
 	char	key[SZBUFKEY];
 
-	ft_putstr(INIT_SCR);
 	get_term_size(&(tcaps->ts));
 	print_args(tcaps, tcaps->e_infos.elems);
+
 	while ("main loop for user interactions")
 	{
+		print_escape_msg();
 		read_key(key);
 		analyze_key(tcaps, key);
 	}
