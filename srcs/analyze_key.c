@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 16:14:42 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/24 15:01:33 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/24 16:04:21 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	analyze_key_arrow(t_term_caps *tcaps, char key[SZBUFKEY])
 void		analyze_key(t_term_caps *tcaps, char key[SZBUFKEY])
 {
 	if (key[0] == KEY_ESCAPE && key[1] == '\0')
-		handle_escape();
+		handle_escape(tcaps);
 	else if (key[0] == KEY_SPACE && key[1] == '\0')
 	{
 		tcaps->cursor_pos_ptr->selected = !tcaps->cursor_pos_ptr->selected;

@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 21:11:14 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/24 15:35:07 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/24 16:04:25 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,22 @@ void	handle_key_bs(t_term_caps *tcaps)
 		tcaps->cursor_pos_ptr->next = NULL;
 		tcaps->e_infos.elems_last = tcaps->cursor_pos_ptr;
 	}
+	else
+	{
+		handle_escape(tcaps);
+		return ;
+	}
 	free(tmp);
 	refresh_display(tcaps);
-
 }
 
 /*
 ** Handle escape key
 */
 
-void	handle_escape(void)
+void	handle_escape(t_term_caps *tcaps)
 {
+	free_args_list(tcaps->e_infos.elems);
 	save_restore_term_settings(RESTORE);
 	exit(EXIT_SUCCESS);
 }

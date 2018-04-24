@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/24 15:33:27 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/24 16:04:37 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void						handle_key_return(t_term_caps *tcaps);
 
 void						handle_key_bs(t_term_caps *tcaps);
 
-void						handle_escape(void);
+void						handle_escape(t_term_caps *tcaps);
 
 /*
 **	is_key.c
