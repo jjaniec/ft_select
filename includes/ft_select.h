@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/22 20:43:03 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/24 18:55:27 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,17 @@ typedef struct				s_elems_infos
 	unsigned int			elems_per_row;
 }							t_elems_infos;
 
+typedef struct				s_ft_select_opts
+{
+	bool					ascii_sort;
+}							t_ft_select_opts;
+
 typedef struct				s_term_caps
 {
 	struct termios			tios;
 	struct winsize			ts;
 	struct s_elems_infos	e_infos;
+	struct s_ft_select_opts	opt;
 	char					*clear_s;
 	t_ft_select_arg			*cursor_pos_ptr;
 	char					*movcur_s;
@@ -169,5 +175,11 @@ int							change_term_settings(struct s_term_caps	*tcaps);
 
 t_ft_select_arg				*move_cursor_index(t_term_caps *tcaps, \
 								int move_pos, t_ft_select_arg *args_ptr);
+
+/*
+** parse_options.c
+*/
+
+int							parse_options(t_term_caps *tcaps, char **argv);
 
 #endif

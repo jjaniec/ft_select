@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/22 20:40:27 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/24 18:40:06 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static void		ft_select(t_term_caps *tcaps)
 
 static void		init_tcaps(struct s_term_caps *tcaps, int argc, char **argv)
 {
-	tcaps->e_infos.elems = create_args_sorted_list(tcaps, argv + 1);
+	tcaps->e_infos.elems = \
+		create_args_sorted_list(tcaps, argv + 1 + parse_options(tcaps, argv + 1));
 	tcaps->e_infos.elems_first = tcaps->e_infos.elems;
 	tcaps->e_infos.elems_count = argc - 1;
 	tcaps->clear_s = tgetstr("cl", NULL);
@@ -72,6 +73,8 @@ int				main(int argc, char **argv)
 {
 	struct s_term_caps	tcaps;
 
+	g_tcaps = &tcaps;
+	g_li = tcaps.e_infos.elems;
 	if (argc < 2)
 	{
 		ft_putstr_fd("usage: ft_select: argument1 [argument2 ...]\n",
@@ -82,8 +85,6 @@ int				main(int argc, char **argv)
 		init_sig_handlers() == -1)
 		return (EXIT_FAILURE);
 	init_tcaps(&tcaps, argc, argv);
-	g_tcaps = &tcaps;
-	g_li = tcaps.e_infos.elems;
 	ft_select(&tcaps);
 	free_args_list(tcaps.e_infos.elems);
 	save_restore_term_settings(RESTORE);
