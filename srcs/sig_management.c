@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 19:25:02 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 21:43:06 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/24 15:34:57 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ int				init_sig_handlers(void)
 {
 	if (signal(SIGINT, &(handle_sigint)) == SIG_ERR)
 		return (-1);
-
 	if (signal(SIGWINCH, &(handle_sigwinch)) == SIG_ERR)
 		return (-1);
-
 	return (0);
 }

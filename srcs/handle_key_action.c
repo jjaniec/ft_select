@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 21:11:14 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/24 14:51:12 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/24 15:35:07 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,24 @@ void	refresh_display(t_term_caps *tcaps)
 {
 	ft_putstr(tcaps->clear_s);
 	print_args(tcaps, tcaps->e_infos.elems);
+}
+
+void	handle_key_return(t_term_caps *tcaps)
+{
+	t_ft_select_arg	*ptr;
+
+	ptr = tcaps->e_infos.elems;
+	ft_putstr(tgetstr("ve", NULL));
+	ft_putstr(END_SCR);
+	while (ptr)
+	{
+		if (ptr->selected == true)
+			printf("\"%s\" ", ptr->str);
+		ptr = ptr->next;
+	}
+	save_restore_term_settings(RESTORE_NO_SCR_END);
+	free_args_list(tcaps->e_infos.elems);
+	exit(EXIT_SUCCESS);
 }
 
 void	handle_key_bs(t_term_caps *tcaps)

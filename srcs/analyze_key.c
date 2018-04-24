@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 16:14:42 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/24 14:51:49 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/24 15:01:33 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ void		analyze_key(t_term_caps *tcaps, char key[SZBUFKEY])
 	else if ((key[0] == KEY_BS && key[1] == '\0') || is_key_delete(key))
 		handle_key_bs(tcaps);
 	else if (key[0] == KEY_RETURN && key[1] == '\0')
-	{
-
-	}
+		handle_key_return(tcaps);
 	else
 		analyze_key_arrow(tcaps, key);
 }

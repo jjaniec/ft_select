@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/24 14:51:37 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/24 15:33:27 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ enum						e_one_byte_keycodes
 enum						e_save_restore_term_settings_modes
 {
 	SAVE,
-	RESTORE
+	RESTORE,
+	RESTORE_NO_SCR_END
 };
 
 typedef struct				s_ft_select_arg
@@ -122,6 +123,8 @@ void						get_term_size(struct winsize *ts);
 */
 
 void						refresh_display(t_term_caps *tcaps);
+
+void						handle_key_return(t_term_caps *tcaps);
 
 void						handle_key_bs(t_term_caps *tcaps);
 
