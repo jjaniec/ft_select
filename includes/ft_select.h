@@ -46,7 +46,8 @@ enum						e_one_byte_keycodes
 enum						e_save_restore_term_settings_modes
 {
 	SAVE,
-	RESTORE
+	RESTORE,
+	RESTORE_NO_SCR_END
 };
 
 typedef struct				s_ft_select_arg
@@ -88,7 +89,7 @@ typedef struct				s_term_caps
 ** analyze_key.c
 */
 
-void						analyze_key(char key[SZBUFKEY]);
+void						analyze_key(t_term_caps *tcaps, char key[SZBUFKEY]);
 
 /*
 ** create_args_list.c
@@ -134,7 +135,13 @@ void						get_term_size(struct winsize *ts);
 ** handle_key_action.c
 */
 
-void						handle_escape(void);
+void						refresh_display(t_term_caps *tcaps);
+
+void						handle_key_return(t_term_caps *tcaps);
+
+void						handle_key_bs(t_term_caps *tcaps);
+
+void						handle_escape(t_term_caps *tcaps);
 
 /*
 **	is_key.c

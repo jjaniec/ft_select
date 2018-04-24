@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/24 19:12:34 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/22 21:19:49 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void		ft_select(t_term_caps *tcaps)
 	while ("main loop for user interactions")
 	{
 		read_key(key);
-		analyze_key(key);
+		analyze_key(tcaps, key);
 	}
 }
 
