@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/25 12:34:50 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/25 13:41:20 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,5 +259,12 @@ t_ft_select_arg				*move_cursor_index(t_term_caps *tcaps, \
 */
 
 int							parse_options(t_term_caps *tcaps, char **argv);
+
+/*
+** print_arg_color.c
+*/
+
+int							print_arg_color(t_term_caps *tcaps, \
+								t_ft_select_arg *e);
 
 #endif
