@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/25 13:41:20 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/25 15:20:04 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct				s_ft_select_cols
 ** selected: false or true to know if element has been selected w/ space
 ** stats: stats of (pwd + str)
 ** stat_r: return code of lstat()
+** index: index of element in the linked list (given by print_args())
 ** prev: previous element in the linked list
 ** next: next element in the linked list
 */
@@ -90,6 +91,7 @@ typedef struct				s_ft_select_arg
 	bool					selected;
 	struct stat				stats;
 	int						stat_r;
+	unsigned int			index;
 	struct s_ft_select_arg	*prev;
 	struct s_ft_select_arg	*next;
 }							t_ft_select_arg;
