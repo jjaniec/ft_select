@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 19:35:03 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/25 15:31:20 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/25 18:50:55 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void				print_arg_fmt(t_term_caps *tcaps, t_ft_select_arg *e)
 
 /*
 **	If the window's size is too small,
-*	print an error message instead of the args.
+**	print an error message instead of the args.
 */
 
 static void				print_win_too_small(const char *clear_s)
@@ -87,7 +87,7 @@ void					print_args(t_term_caps *tcaps, t_ft_select_arg *li)
 	i = 1;
 	if (tcaps->e_infos.width > 0 && get_elems_per_row(tcaps) == 0)
 		return (print_win_too_small(tcaps->clear_s));
-	printf("elems/row: %d - count %u\n", tcaps->e_infos.elems_per_row, tcaps->e_infos.elems_count);
+	//printf("elems/row: %d - count %u\n", tcaps->e_infos.elems_per_row, tcaps->e_infos.elems_count);
 	ptr = li;
 	while (ptr)
 	{
@@ -95,7 +95,7 @@ void					print_args(t_term_caps *tcaps, t_ft_select_arg *li)
 		ptr->index = i++;
 		if (++j == tcaps->e_infos.elems_per_row)
 		{
-			printf("%u\n", ptr->index);
+			printf("\n");
 			j = 0;
 		}
 		ptr = ptr->next;

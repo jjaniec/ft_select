@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/25 15:20:04 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/25 16:09:51 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,7 +254,7 @@ int							change_term_settings(struct s_term_caps	*tcaps);
 */
 
 t_ft_select_arg				*move_cursor_index(t_term_caps *tcaps, \
-								int move_pos, t_ft_select_arg *args_ptr);
+								int move_pos, t_ft_select_arg *args_ptr, int stop_at_null);
 
 /*
 ** parse_options.c
