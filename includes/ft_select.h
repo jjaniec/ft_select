@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/24 19:13:43 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/25 11:56:17 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,17 @@
 # define INIT_SCR	"\e[?1049h"
 # define END_SCR	"\e[?1049l"
 
+# define DIR_COLOR "\e[1;36m"
+# define SYMLINK_COLOR "\e[35m"
+# define SOCKET_COLOR "\e[32m"
+# define PIPE_COLOR "\e[33m"
+# define EXEC_COLOR "\e[31m"
+# define BLOCK_SPE_COLOR "\e[34;46m"
+# define CHAR_SPE_COLOR "\e[34;43m"
+
+# define COLOR_RESET "\e[0m"
+
+
 enum						e_one_byte_keycodes
 {
 	KEY_RETURN = 10,
@@ -49,6 +60,17 @@ enum						e_save_restore_term_settings_modes
 	RESTORE,
 	RESTORE_NO_SCR_END
 };
+
+typedef struct				s_ft_select_cols
+{
+	char					*di;
+	char					*ln;
+	char					*so;
+	char					*pi;
+	char					*ex;
+	char					*bd;
+	char					*cd;
+}							t_ft_select_cols;
 
 typedef struct				s_ft_select_arg
 {
@@ -79,6 +101,7 @@ typedef struct				s_term_caps
 	struct winsize			ts;
 	struct s_elems_infos	e_infos;
 	struct s_ft_select_opts	opt;
+	struct s_ft_select_cols	colors;
 	char					*clear_s;
 	t_ft_select_arg			*cursor_pos_ptr;
 	char					*movcur_s;
