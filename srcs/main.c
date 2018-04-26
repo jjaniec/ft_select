@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/25 12:04:56 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 16:13:23 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			print_escape_msg(void)
 ** Read user input and store it in key
 */
 
-static void		read_key(char key[SZBUFKEY])
+static void		read_key(t_term_caps *tcaps, char key[SZBUFKEY])
 {
 	ssize_t	read_ret;
 
@@ -48,7 +48,7 @@ static void		read_key(char key[SZBUFKEY])
 				change_term_settings(g_tcaps);
 				ft_putstr(INIT_SCR);
 				get_term_size(&(g_tcaps->ts));
-				print_args(g_tcaps, g_li);
+				print_args(tcaps, tcaps->e_infos.elems);
 				print_escape_msg();
 			}
 			else
@@ -73,7 +73,7 @@ static void		ft_select(t_term_caps *tcaps)
 	while ("main loop for user interactions")
 	{
 		print_escape_msg();
-		read_key(key);
+		read_key(tcaps, key);
 		analyze_key(tcaps, key);
 	}
 }

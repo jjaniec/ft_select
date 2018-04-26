@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 19:25:02 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/24 15:34:57 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 16:12:36 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void		handle_sigwinch(int sig)
 	(void)sig;
 	ft_putstr(g_tcaps->clear_s);
 	get_term_size(&(g_tcaps->ts));
-	print_escape_msg();
 	print_args(g_tcaps, g_tcaps->e_infos.elems);
+	print_escape_msg();
 }
 
 /*
