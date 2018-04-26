@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 21:18:43 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/26 17:18:32 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 20:46:49 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		save_restore_term_settings(int mode)
 		}
 		if (tcsetattr(STDIN_FILENO, TCSANOW, &orig_tios) == -1)
 			ft_exit(FATAL_ERROR, \
-				"Failure while restoring the originals settings (tcsetattr() failed)\n");
+				"Failure while restoring the originals " \
+				"settings (tcsetattr() failed)\n");
 	}
 }

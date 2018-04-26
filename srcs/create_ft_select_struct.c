@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 16:27:01 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/26 15:56:40 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 20:40:18 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ t_ft_select_arg		*create_ft_select_arg_struct(t_term_caps *tcaps, \
 	e->selected = false;
 	e->str = argptr;
 	e->prev = prev_elem_ptr;
-	e_path = ((argptr[0] != '/') ? (ft_strjoin_path(tcaps->cwd, argptr)) : (argptr));
+	e_path = ((argptr[0] != '/') ? \
+		(ft_strjoin_path(tcaps->cwd, argptr)) : (argptr));
 	e->stat_r = lstat(e_path, &(e->stats));
 	if (argptr[0] != '/')
 		free(e_path);

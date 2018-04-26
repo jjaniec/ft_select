@@ -6,13 +6,13 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 19:25:02 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/26 17:21:49 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 20:49:09 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-extern t_term_caps 		*g_tcaps;
+extern t_term_caps		*g_tcaps;
 
 static void		handle_sigint(int sig)
 {

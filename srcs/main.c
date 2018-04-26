@@ -6,27 +6,13 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/26 17:21:18 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 20:48:07 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-t_term_caps 		*g_tcaps;
-
-/*
-**	Print a message to say how to quit the program.
-*/
-
-void			print_escape_msg(void)
-{
-	ft_putstr_fd(tgoto(g_tcaps->movcur_s, g_tcaps->ts.ws_col - 21, \
-	g_tcaps->ts.ws_row), STDIN_FILENO);
-	ft_putstr_fd(COLOR_BACK_WHITE, STDIN_FILENO);
-	ft_putstr_fd(COLOR_CAR_BLUE, STDIN_FILENO);
-	ft_putstr_fd(" PRESS ESCAPE TO QUIT", STDIN_FILENO);
-	ft_putstr_fd(END_COLOR, STDIN_FILENO);
-}
+t_term_caps		*g_tcaps;
 
 /*
 ** Read user input and store it in key
@@ -69,7 +55,6 @@ static void		ft_select(t_term_caps *tcaps)
 
 	get_term_size(&(tcaps->ts));
 	print_args(tcaps, tcaps->e_infos.elems);
-
 	while ("main loop for user interactions")
 	{
 		print_escape_msg();

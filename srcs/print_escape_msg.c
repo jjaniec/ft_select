@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_term_size.c                                    :+:      :+:    :+:   */
+/*   print_escape_msg.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/20 16:59:08 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/26 20:41:16 by jjaniec          ###   ########.fr       */
+/*   Created: 2018/04/26 20:42:09 by jjaniec           #+#    #+#             */
+/*   Updated: 2018/04/26 20:47:56 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
+extern t_term_caps		*g_tcaps;
+
 /*
-** Get terminal rows and column count using ioctl
-** ts: winsize struct to store rows and cols count
+**	Print a message to say how to quit the program.
 */
 
-void		get_term_size(struct winsize *ts)
+void			print_escape_msg(void)
 {
-	if (-1 == ioctl(STDIN_FILENO, TIOCGWINSZ, ts))
-	{
-		save_restore_term_settings(RESTORE);
-		ft_exit(FATAL_ERROR, "ft_select: Failed to get terminal size\n");
-	}
+	ft_putstr_fd(tgoto(g_tcaps->movcur_s, g_tcaps->ts.ws_col - 21, \
+	g_tcaps->ts.ws_row), STDIN_FILENO);
+	ft_putstr_fd(COLOR_BACK_WHITE, STDIN_FILENO);
+	ft_putstr_fd(COLOR_CAR_BLUE, STDIN_FILENO);
+	ft_putstr_fd(" PRESS ESCAPE TO QUIT", STDIN_FILENO);
+	ft_putstr_fd(END_COLOR, STDIN_FILENO);
 }

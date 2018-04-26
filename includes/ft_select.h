@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/26 18:27:19 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 20:16:43 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,17 @@ enum						e_save_restore_term_settings_modes
 	RESTORE,
 	RESTORE_NO_SCR_END
 };
+
+/*
+** Saves color for each file type
+** di: directories
+** ln: symbolic links
+** so: sockets
+** pi: pipes
+** ex: executables
+** bd: block devices
+** cd: char devices
+*/
 
 typedef struct				s_ft_select_cols
 {
@@ -264,7 +275,8 @@ int							change_term_settings(struct s_term_caps	*tcaps);
 */
 
 t_ft_select_arg				*move_cursor_index(t_term_caps *tcaps, \
-								int move_pos, t_ft_select_arg *args_ptr, int stop_at_null);
+								int move_pos, t_ft_select_arg *args_ptr, \
+								int stop_at_null);
 
 /*
 ** parse_options.c

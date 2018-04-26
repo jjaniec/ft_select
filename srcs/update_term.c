@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 17:33:10 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/26 17:14:37 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 20:49:28 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int			init_term(void)
 }
 
 /*
-** Save the originals settings with save_restore_term_settings() then change them.
+** Save the originals settings with save_restore_term_settings()
+** then change them.
 ** Returns -1 if an error occurs, 0 otherwise.
 */
 

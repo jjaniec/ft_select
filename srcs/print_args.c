@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 19:35:03 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/26 18:37:57 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 20:48:35 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void					print_args(t_term_caps *tcaps, t_ft_select_arg *li)
 	i = 1;
 	if (tcaps->e_infos.width > 0 && get_elems_per_row(tcaps) == 0)
 		return (print_win_too_small(tcaps->clear_s));
-	//printf("elems/row: %d - count %u\n", tcaps->e_infos.elems_per_row, tcaps->e_infos.elems_count);
 	ptr = li;
 	while (ptr)
 	{

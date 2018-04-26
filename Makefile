@@ -6,7 +6,7 @@
 #    By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 17:27:33 by jjaniec           #+#    #+#              #
-#    Updated: 2018/04/26 18:55:17 by jjaniec          ###   ########.fr        #
+#    Updated: 2018/04/26 20:42:57 by jjaniec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC_NAME = analyze_key.c \
 		   parse_options.c \
 		   create_args_list.c \
 		   print_arg_color.c \
+		   print_escape_msg.c \
 		   main.c
 
 INCLUDES_NAME = ft_select.h

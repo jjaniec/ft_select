@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 21:11:14 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/26 18:30:52 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 20:44:45 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	handle_key_bs(t_term_caps *tcaps)
 	else
 		return (handle_escape(tcaps));
 	free(tmp);
-	refresh_display(tcaps);
 }
 
 /*
