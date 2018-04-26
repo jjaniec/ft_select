@@ -51,6 +51,7 @@ static void		read_key(char key[SZBUFKEY])
 				ft_putstr(INIT_SCR);
 				get_term_size(&(g_tcaps->ts));
 				print_args(g_tcaps, g_li);
+				print_escape_msg();
 			}
 			else
 				ft_exit(FATAL_ERROR, "Call to read() failed\n");

@@ -18,10 +18,11 @@
 */
 
 void		get_term_size(struct winsize *ts)
-{
-	if (-1 == ioctl(STDOUT_FILENO, TIOCGWINSZ, ts))
+{ 
+	if (-1 == ioctl(STDIN_FILENO, TIOCGWINSZ, ts))
 	{
 		save_restore_term_settings(RESTORE);
+		perror("perror ioctl()"); // a retirer au rendu
 		ft_exit(FATAL_ERROR, "ft_select: Failed to get terminal size\n");
 	}
 	//printf("lines %d\n", ts->ws_row);
