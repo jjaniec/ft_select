@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 21:11:14 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/26 17:29:37 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 18:30:52 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	handle_key_return(t_term_caps *tcaps)
 	while (ptr)
 	{
 		if (ptr->selected == true)
-			dprintf(STDOUT_FILENO, "%s ", ptr->str);
+			ft_dprintf(STDOUT_FILENO, "%s ", ptr->str);
 		ptr = ptr->next;
 	}
 	save_restore_term_settings(RESTORE_NO_SCR_END);
