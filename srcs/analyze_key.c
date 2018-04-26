@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 16:14:42 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/24 16:04:21 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/25 16:20:30 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,24 @@ static void	analyze_key_arrow(t_term_caps *tcaps, char key[SZBUFKEY])
 {
 	if (is_key_up_arrow(key) == true)
 	{
-		tcaps->cursor_pos_ptr = move_cursor_index(tcaps, -(tcaps->e_infos.elems_per_row), tcaps->cursor_pos_ptr);
+		tcaps->cursor_pos_ptr = move_cursor_index(tcaps, \
+			-(tcaps->e_infos.elems_per_row), tcaps->cursor_pos_ptr, false);
 		refresh_display(tcaps);
 	}
 	else if (is_key_down_arrow(key) == true)
 	{
-		tcaps->cursor_pos_ptr = move_cursor_index(tcaps, tcaps->e_infos.elems_per_row, tcaps->cursor_pos_ptr);
+		tcaps->cursor_pos_ptr = move_cursor_index(tcaps, \
+			tcaps->e_infos.elems_per_row, tcaps->cursor_pos_ptr, false);
 		refresh_display(tcaps);
 	}
 	else if (is_key_left_arrow(key) == true)
 	{
-		tcaps->cursor_pos_ptr = move_cursor_index(tcaps, -1, tcaps->cursor_pos_ptr);
+		tcaps->cursor_pos_ptr = move_cursor_index(tcaps, -1, tcaps->cursor_pos_ptr, false);
 		refresh_display(tcaps);
 	}
 	else if (is_key_right_arrow(key) == true)
 	{
-		tcaps->cursor_pos_ptr = move_cursor_index(tcaps, 1, tcaps->cursor_pos_ptr);
+		tcaps->cursor_pos_ptr = move_cursor_index(tcaps, 1, tcaps->cursor_pos_ptr, false);
 		refresh_display(tcaps);
 	}
 }
@@ -50,7 +52,7 @@ void		analyze_key(t_term_caps *tcaps, char key[SZBUFKEY])
 	else if (key[0] == KEY_SPACE && key[1] == '\0')
 	{
 		tcaps->cursor_pos_ptr->selected = !tcaps->cursor_pos_ptr->selected;
-		tcaps->cursor_pos_ptr = move_cursor_index(tcaps, 1, tcaps->cursor_pos_ptr);
+		tcaps->cursor_pos_ptr = move_cursor_index(tcaps, 1, tcaps->cursor_pos_ptr, false);
 		refresh_display(tcaps);
 	}
 	else if ((key[0] == KEY_BS && key[1] == '\0') || is_key_delete(key))
