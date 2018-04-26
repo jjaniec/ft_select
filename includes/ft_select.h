@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/22 20:43:03 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/24 19:13:43 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ enum						e_one_byte_keycodes
 enum						e_save_restore_term_settings_modes
 {
 	SAVE,
-	RESTORE
+	RESTORE,
+	RESTORE_NO_SCR_END
 };
 
 typedef struct				s_ft_select_arg
@@ -67,11 +68,17 @@ typedef struct				s_elems_infos
 	unsigned int			elems_per_row;
 }							t_elems_infos;
 
+typedef struct				s_ft_select_opts
+{
+	bool					ascii_sort;
+}							t_ft_select_opts;
+
 typedef struct				s_term_caps
 {
 	struct termios			tios;
 	struct winsize			ts;
 	struct s_elems_infos	e_infos;
+	struct s_ft_select_opts	opt;
 	char					*clear_s;
 	t_ft_select_arg			*cursor_pos_ptr;
 	char					*movcur_s;
@@ -82,7 +89,14 @@ typedef struct				s_term_caps
 ** analyze_key.c
 */
 
-void						analyze_key(char key[SZBUFKEY]);
+void						analyze_key(t_term_caps *tcaps, char key[SZBUFKEY]);
+
+/*
+** create_args_list.c
+*/
+
+t_ft_select_arg				*create_args_list(t_term_caps *tcaps, \
+								char **args);
 
 /*
 ** create_args_sorted_list.c
@@ -121,7 +135,13 @@ void						get_term_size(struct winsize *ts);
 ** handle_key_action.c
 */
 
-void						handle_escape(void);
+void						refresh_display(t_term_caps *tcaps);
+
+void						handle_key_return(t_term_caps *tcaps);
+
+void						handle_key_bs(t_term_caps *tcaps);
+
+void						handle_escape(t_term_caps *tcaps);
 
 /*
 **	is_key.c
@@ -169,5 +189,11 @@ int							change_term_settings(struct s_term_caps	*tcaps);
 
 t_ft_select_arg				*move_cursor_index(t_term_caps *tcaps, \
 								int move_pos, t_ft_select_arg *args_ptr);
+
+/*
+** parse_options.c
+*/
+
+int							parse_options(t_term_caps *tcaps, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 21:18:43 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/21 21:44:16 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/24 15:34:21 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@ void		save_restore_term_settings(int mode)
 		if (tcgetattr(STDIN_FILENO, &orig_tios) == -1)
 			ft_exit(FATAL_ERROR, "Call to tcgetattr() failed\n");
 	}
-	else if (mode == RESTORE)
+	else if (mode == RESTORE || mode == RESTORE_NO_SCR_END)
 	{
-		ft_putstr(tgetstr("ve", NULL));
+		if (mode != RESTORE_NO_SCR_END)
+		{
+			ft_putstr(tgetstr("ve", NULL));
+			ft_putstr(END_SCR);
+		}
 		if (tcsetattr(STDIN_FILENO, TCSANOW, &orig_tios) == -1)
 			ft_exit(FATAL_ERROR, \
 				"Failure while restoring the originals settings (tcsetattr() failed)\n");
-		ft_putstr(END_SCR);
 	}
 }
