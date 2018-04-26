@@ -63,6 +63,6 @@ int			change_term_settings(struct s_term_caps	*tcaps)
 		ft_putstr_fd("Call to tcsetattr() failed\n", STDERR_FILENO);
 		return (-1);
 	}
-	ft_putstr(tgetstr("vi", NULL));
+	ft_putstr(INIT_SCR);
 	return (0);
 }

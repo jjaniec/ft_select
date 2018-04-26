@@ -25,6 +25,7 @@ static void		handle_sigwinch(int sig)
 	(void)sig;
 	ft_putstr(g_tcaps->clear_s);
 	get_term_size(&(g_tcaps->ts));
+	print_escape_msg();
 	print_args(g_tcaps, g_tcaps->e_infos.elems);
 }
 
