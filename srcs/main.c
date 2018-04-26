@@ -14,8 +14,6 @@
 
 t_term_caps 		*g_tcaps;
 
-t_ft_select_arg 	*g_li;
-
 /*
 ** Read user input and store it in key
 */
@@ -89,7 +87,6 @@ int				main(int argc, char **argv)
 	struct s_term_caps	tcaps;
 
 	g_tcaps = &tcaps;
-	g_li = tcaps.e_infos.elems;
 	if (argc < 2)
 	{
 		ft_putstr_fd("usage: ft_select: argument1 [argument2 ...]\n",

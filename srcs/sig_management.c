@@ -13,7 +13,6 @@
 #include <ft_select.h>
 
 extern t_term_caps 		*g_tcaps;
-extern t_ft_select_arg 	*g_li;
 
 static void		handle_sigint(int sig)
 {
@@ -26,7 +25,7 @@ static void		handle_sigwinch(int sig)
 	(void)sig;
 	ft_putstr(g_tcaps->clear_s);
 	get_term_size(&(g_tcaps->ts));
-	print_args(g_tcaps, g_li);
+	print_args(g_tcaps, g_tcaps->e_infos.elems);
 }
 
 /*
