@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/26 16:13:23 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 17:21:18 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ t_term_caps 		*g_tcaps;
 
 void			print_escape_msg(void)
 {
-	ft_putstr(tgoto(g_tcaps->movcur_s, g_tcaps->ts.ws_col - 21, \
-	g_tcaps->ts.ws_row));
-	ft_putstr(COLOR_BACK_WHITE);
-	ft_putstr(COLOR_CAR_BLUE);
-	ft_putstr(" PRESS ESCAPE TO QUIT");
-	ft_putstr(END_COLOR);
+	ft_putstr_fd(tgoto(g_tcaps->movcur_s, g_tcaps->ts.ws_col - 21, \
+	g_tcaps->ts.ws_row), STDIN_FILENO);
+	ft_putstr_fd(COLOR_BACK_WHITE, STDIN_FILENO);
+	ft_putstr_fd(COLOR_CAR_BLUE, STDIN_FILENO);
+	ft_putstr_fd(" PRESS ESCAPE TO QUIT", STDIN_FILENO);
+	ft_putstr_fd(END_COLOR, STDIN_FILENO);
 }
 
 /*
@@ -46,7 +46,7 @@ static void		read_key(t_term_caps *tcaps, char key[SZBUFKEY])
 			{
 				save_restore_term_settings(RESTORE);
 				change_term_settings(g_tcaps);
-				ft_putstr(INIT_SCR);
+				ft_putstr_fd(INIT_SCR, STDIN_FILENO);
 				get_term_size(&(g_tcaps->ts));
 				print_args(tcaps, tcaps->e_infos.elems);
 				print_escape_msg();

@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 21:11:14 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/24 16:04:25 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 17:29:37 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	refresh_display(t_term_caps *tcaps)
 {
-	ft_putstr(tcaps->clear_s);
+	ft_putstr_fd(tcaps->clear_s, STDIN_FILENO);
 	print_args(tcaps, tcaps->e_infos.elems);
 }
 
@@ -23,12 +23,12 @@ void	handle_key_return(t_term_caps *tcaps)
 	t_ft_select_arg	*ptr;
 
 	ptr = tcaps->e_infos.elems;
-	ft_putstr(tgetstr("ve", NULL));
-	ft_putstr(END_SCR);
+	ft_putstr_fd(tgetstr("ve", NULL), STDIN_FILENO);
+	ft_putstr_fd(END_SCR, STDIN_FILENO);
 	while (ptr)
 	{
 		if (ptr->selected == true)
-			printf("\"%s\" ", ptr->str);
+			dprintf(STDOUT_FILENO, "%s ", ptr->str);
 		ptr = ptr->next;
 	}
 	save_restore_term_settings(RESTORE_NO_SCR_END);
@@ -61,10 +61,7 @@ void	handle_key_bs(t_term_caps *tcaps)
 		tcaps->e_infos.elems_last = tcaps->cursor_pos_ptr;
 	}
 	else
-	{
-		handle_escape(tcaps);
-		return ;
-	}
+		return (handle_escape(tcaps));
 	free(tmp);
 	refresh_display(tcaps);
 }
