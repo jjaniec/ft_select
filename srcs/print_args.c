@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 19:35:03 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/21 22:31:29 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/25 13:43:07 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,16 @@ static void				print_arg_fmt(t_term_caps *tcaps, t_ft_select_arg *e)
 	char	*str_fmt;
 
 	str_fmt = e->str;
-	if (e->selected == true || tcaps->cursor_pos_ptr == e)
+	if (e->stat_r == 0 || e->selected == true || tcaps->cursor_pos_ptr == e)
 	{
 		if (e->selected == true)
 			printf(ELEM_SELECTED_FMT);
 		if (tcaps->cursor_pos_ptr == e)
 			printf(CURSOR_POS_FMT);
+		print_arg_color(tcaps, e);
 		str_fmt = ft_strjoin(e->str, FORMAT_RESET);
-		print_arg_fmt_str(tcaps, str_fmt, ft_strlen(FORMAT_RESET));
+		print_arg_fmt_str(tcaps, str_fmt, \
+			(int)ft_strlen(FORMAT_RESET));
 		free(str_fmt);
 	}
 	else

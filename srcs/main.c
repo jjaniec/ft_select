@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/22 21:19:49 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/25 12:04:56 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,25 @@ static void		ft_select(t_term_caps *tcaps)
 	}
 }
 
+static void		init_colors(t_term_caps *tcaps)
+{
+	tcaps->colors.di = DIR_COLOR;
+	tcaps->colors.ln = SYMLINK_COLOR;
+	tcaps->colors.so = SOCKET_COLOR;
+	tcaps->colors.pi = PIPE_COLOR;
+	tcaps->colors.ex = EXEC_COLOR;
+	tcaps->colors.bd = BLOCK_SPE_COLOR;
+	tcaps->colors.cd = CHAR_SPE_COLOR;
+}
+
 /*
 **	Initialize the main structure of the program
 */
 
-static void		init_tcaps(struct s_term_caps *tcaps, int argc, char **argv)
+static void		init_tcaps(t_term_caps *tcaps, int argc, char **argv)
 {
+	char	cwd[1024];
+
 	tcaps->e_infos.elems = \
 		create_args_list(tcaps, argv + 1 + parse_options(tcaps, argv + 1));
 	tcaps->e_infos.elems_first = tcaps->e_infos.elems;
@@ -67,6 +80,8 @@ static void		init_tcaps(struct s_term_caps *tcaps, int argc, char **argv)
 	tcaps->movcur_s = tgetstr("cm", NULL);
 	get_printing_width(&(tcaps->e_infos), argv + 1);
 	tcaps->cursor_pos_ptr = tcaps->e_infos.elems_first;
+	if ((tcaps->cwd = getcwd(cwd, sizeof(cwd))) != NULL)
+		init_colors(tcaps);
 }
 
 int				main(int argc, char **argv)

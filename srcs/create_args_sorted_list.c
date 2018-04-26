@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 16:36:37 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/24 19:07:29 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/25 12:20:55 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ t_ft_select_arg			*create_args_sorted_list(t_term_caps *tcaps, \
 	{
 		if (!r)
 		{
-			li = create_ft_select_arg_struct(args[i], NULL);
+			li = create_ft_select_arg_struct(tcaps, args[i], NULL);
 			tcaps->e_infos.elems_last = li;
 			r = li;
 		}
 		else
 			li = append_arg(tcaps, li, \
-					create_ft_select_arg_struct(args[i], NULL));
+					create_ft_select_arg_struct(tcaps, args[i], NULL));
 		i++;
 	}
 	return (li);

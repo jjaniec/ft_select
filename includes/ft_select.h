@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/24 19:13:43 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/25 13:41:20 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include <sys/ioctl.h>
 # include <signal.h>
 # include <stdbool.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <unistd.h>
 
 # define FORMAT_RESET "\e[0m"
 # define ELEM_SELECTED_FMT "\e[7m"
@@ -34,6 +37,17 @@
 
 # define INIT_SCR	"\e[?1049h"
 # define END_SCR	"\e[?1049l"
+
+# define DIR_COLOR "\e[1;36m"
+# define SYMLINK_COLOR "\e[35m"
+# define SOCKET_COLOR "\e[32m"
+# define PIPE_COLOR "\e[33m"
+# define EXEC_COLOR "\e[31m"
+# define BLOCK_SPE_COLOR "\e[34;46m"
+# define CHAR_SPE_COLOR "\e[34;43m"
+
+# define COLOR_RESET "\e[0m"
+
 
 enum						e_one_byte_keycodes
 {
@@ -50,13 +64,44 @@ enum						e_save_restore_term_settings_modes
 	RESTORE_NO_SCR_END
 };
 
+typedef struct				s_ft_select_cols
+{
+	char					*di;
+	char					*ln;
+	char					*so;
+	char					*pi;
+	char					*ex;
+	char					*bd;
+	char					*cd;
+}							t_ft_select_cols;
+
+/*
+** str: pointer to argument in argv
+** selected: false or true to know if element has been selected w/ space
+** stats: stats of (pwd + str)
+** stat_r: return code of lstat()
+** prev: previous element in the linked list
+** next: next element in the linked list
+*/
+
 typedef struct				s_ft_select_arg
 {
 	char					*str;
 	bool					selected;
+	struct stat				stats;
+	int						stat_r;
 	struct s_ft_select_arg	*prev;
 	struct s_ft_select_arg	*next;
 }							t_ft_select_arg;
+
+/*
+** elems: linked list of all cli arguments
+** elems_first: pointer to first element of the linked list
+** elems_last: pointer to last element of the linked list
+** elems_count: count of elements in the linked list
+** width: length of the longest cli argument
+** elems_per_row: number of elems to print per row
+*/
 
 typedef struct				s_elems_infos
 {
@@ -68,10 +113,27 @@ typedef struct				s_elems_infos
 	unsigned int			elems_per_row;
 }							t_elems_infos;
 
+/*
+** ascii_sort: boolean to know if ascii sorting is activated or not
+*/
+
 typedef struct				s_ft_select_opts
 {
 	bool					ascii_sort;
 }							t_ft_select_opts;
+
+/*
+** tios: struct to save term settings
+** ts: struct to store term width and height
+** e_infos: see struct s_elems_infos
+** opt: see struct s_ft_select_opts
+** colors: see struct s_ft_select_cols
+** clear_s: string to print to do a terminal clear
+** cursor_pos_ptr: pointer to current cli argument in the linked list
+** movcur_s: string to print to move terminal cursor
+** cwd: current working directory,
+**      if getcwd returns an error it will be set to NULL
+*/
 
 typedef struct				s_term_caps
 {
@@ -79,9 +141,11 @@ typedef struct				s_term_caps
 	struct winsize			ts;
 	struct s_elems_infos	e_infos;
 	struct s_ft_select_opts	opt;
+	struct s_ft_select_cols	colors;
 	char					*clear_s;
 	t_ft_select_arg			*cursor_pos_ptr;
 	char					*movcur_s;
+	char					*cwd;
 
 }							t_term_caps;
 
@@ -109,8 +173,8 @@ t_ft_select_arg				*create_args_sorted_list(t_term_caps *tcaps, \
 ** create_ft_select_struct.c
 */
 
-t_ft_select_arg				*create_ft_select_arg_struct(char *argptr, \
-								t_ft_select_arg *prev_elem_ptr);
+t_ft_select_arg				*create_ft_select_arg_struct(t_term_caps *tcaps, \
+								char *argptr, t_ft_select_arg *prev_elem_ptr);
 
 /*
 ** free_args_list.c
@@ -195,5 +259,12 @@ t_ft_select_arg				*move_cursor_index(t_term_caps *tcaps, \
 */
 
 int							parse_options(t_term_caps *tcaps, char **argv);
+
+/*
+** print_arg_color.c
+*/
+
+int							print_arg_color(t_term_caps *tcaps, \
+								t_ft_select_arg *e);
 
 #endif
