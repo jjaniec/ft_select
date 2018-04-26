@@ -6,15 +6,13 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/22 21:19:49 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/25 12:04:56 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
 t_term_caps 		*g_tcaps;
-
-t_ft_select_arg 	*g_li;
 
 /*
 **	Print a message to say how to quit the program.
@@ -80,25 +78,42 @@ static void		ft_select(t_term_caps *tcaps)
 	}
 }
 
+static void		init_colors(t_term_caps *tcaps)
+{
+	tcaps->colors.di = DIR_COLOR;
+	tcaps->colors.ln = SYMLINK_COLOR;
+	tcaps->colors.so = SOCKET_COLOR;
+	tcaps->colors.pi = PIPE_COLOR;
+	tcaps->colors.ex = EXEC_COLOR;
+	tcaps->colors.bd = BLOCK_SPE_COLOR;
+	tcaps->colors.cd = CHAR_SPE_COLOR;
+}
+
 /*
 **	Initialize the main structure of the program
 */
 
-static void		init_tcaps(struct s_term_caps *tcaps, int argc, char **argv)
+static void		init_tcaps(t_term_caps *tcaps, int argc, char **argv)
 {
-	tcaps->e_infos.elems = create_args_sorted_list(tcaps, argv + 1);
+	char	cwd[1024];
+
+	tcaps->e_infos.elems = \
+		create_args_list(tcaps, argv + 1 + parse_options(tcaps, argv + 1));
 	tcaps->e_infos.elems_first = tcaps->e_infos.elems;
 	tcaps->e_infos.elems_count = argc - 1;
 	tcaps->clear_s = tgetstr("cl", NULL);
 	tcaps->movcur_s = tgetstr("cm", NULL);
 	get_printing_width(&(tcaps->e_infos), argv + 1);
 	tcaps->cursor_pos_ptr = tcaps->e_infos.elems_first;
+	if ((tcaps->cwd = getcwd(cwd, sizeof(cwd))) != NULL)
+		init_colors(tcaps);
 }
 
 int				main(int argc, char **argv)
 {
 	struct s_term_caps	tcaps;
 
+	g_tcaps = &tcaps;
 	if (argc < 2)
 	{
 		ft_putstr_fd("usage: ft_select: argument1 [argument2 ...]\n",
@@ -109,8 +124,6 @@ int				main(int argc, char **argv)
 		init_sig_handlers() == -1)
 		return (EXIT_FAILURE);
 	init_tcaps(&tcaps, argc, argv);
-	g_tcaps = &tcaps;
-	g_li = tcaps.e_infos.elems;
 	ft_select(&tcaps);
 	free_args_list(tcaps.e_infos.elems);
 	save_restore_term_settings(RESTORE);

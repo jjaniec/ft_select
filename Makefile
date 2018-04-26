@@ -6,7 +6,7 @@
 #    By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 17:27:33 by jjaniec           #+#    #+#              #
-#    Updated: 2018/04/22 19:00:44 by jjaniec          ###   ########.fr        #
+#    Updated: 2018/04/25 12:56:57 by jjaniec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,9 @@ SRC_NAME = analyze_key.c \
 		   sig_management.c \
 		   update_term.c \
 		   cursor_movement.c \
+		   parse_options.c \
+		   create_args_list.c \
+		   print_arg_color.c \
 		   main.c
 
 INCLUDES_NAME = ft_select.h

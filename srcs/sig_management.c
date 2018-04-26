@@ -6,14 +6,13 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 19:25:02 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 21:43:06 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/24 15:34:57 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
 extern t_term_caps 		*g_tcaps;
-extern t_ft_select_arg 	*g_li;
 
 static void		handle_sigint(int sig)
 {
@@ -26,8 +25,8 @@ static void		handle_sigwinch(int sig)
 	(void)sig;
 	ft_putstr(g_tcaps->clear_s);
 	get_term_size(&(g_tcaps->ts));
-	print_args(g_tcaps, g_li);
 	print_escape_msg();
+	print_args(g_tcaps, g_tcaps->e_infos.elems);
 }
 
 /*
