@@ -97,6 +97,8 @@ static void		init_tcaps(t_term_caps *tcaps, int argc, char **argv)
 {
 	char	cwd[1024];
 
+	if ((tcaps->cwd = getcwd(cwd, sizeof(cwd))) != NULL)
+		init_colors(tcaps);
 	tcaps->e_infos.elems = \
 		create_args_list(tcaps, argv + 1 + parse_options(tcaps, argv + 1));
 	tcaps->e_infos.elems_first = tcaps->e_infos.elems;
@@ -105,8 +107,6 @@ static void		init_tcaps(t_term_caps *tcaps, int argc, char **argv)
 	tcaps->movcur_s = tgetstr("cm", NULL);
 	get_printing_width(&(tcaps->e_infos), argv + 1);
 	tcaps->cursor_pos_ptr = tcaps->e_infos.elems_first;
-	if ((tcaps->cwd = getcwd(cwd, sizeof(cwd))) != NULL)
-		init_colors(tcaps);
 }
 
 int				main(int argc, char **argv)

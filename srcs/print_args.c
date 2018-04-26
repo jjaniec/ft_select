@@ -51,7 +51,8 @@ static void				print_arg_fmt(t_term_caps *tcaps, t_ft_select_arg *e)
 			ft_dprintf(STDIN_FILENO, ELEM_SELECTED_FMT);
 		if (tcaps->cursor_pos_ptr == e)
 			ft_dprintf(STDIN_FILENO, CURSOR_POS_FMT);
-		print_arg_color(tcaps, e);
+		if (e->stat_r == 0)
+			print_arg_color(tcaps, e);
 		str_fmt = ft_strjoin(e->str, FORMAT_RESET);
 		print_arg_fmt_str(tcaps, str_fmt, \
 			(int)ft_strlen(FORMAT_RESET));
