@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 12:54:44 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/25 14:01:07 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 18:38:02 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@
 int		print_arg_color(t_term_caps *tcaps, t_ft_select_arg *e)
 {
 	if (S_ISDIR(e->stats.st_mode))
-		return (printf("%s", tcaps->colors.di));
+		return (ft_dprintf(STDIN_FILENO, "%s", tcaps->colors.di));
 	if (S_ISLNK(e->stats.st_mode))
-		return (printf("%s", tcaps->colors.ln));
+		return (ft_dprintf(STDIN_FILENO, "%s", tcaps->colors.ln));
 	if (S_ISSOCK(e->stats.st_mode))
-		return (printf("%s", tcaps->colors.so));
+		return (ft_dprintf(STDIN_FILENO, "%s", tcaps->colors.so));
 	if (S_ISFIFO(e->stats.st_mode))
-		return (printf("%s", tcaps->colors.pi));
+		return (ft_dprintf(STDIN_FILENO, "%s", tcaps->colors.pi));
 	if (S_ISBLK(e->stats.st_mode))
-		return (printf("%s", tcaps->colors.bd));
+		return (ft_dprintf(STDIN_FILENO, "%s", tcaps->colors.bd));
 	if (S_ISCHR(e->stats.st_mode))
-		return (printf("%s", tcaps->colors.cd));
+		return (ft_dprintf(STDIN_FILENO, "%s", tcaps->colors.cd));
 	if (e->stats.st_mode & S_IXUSR)
-		return (printf("%s", tcaps->colors.ex));
+		return (ft_dprintf(STDIN_FILENO, "%s", tcaps->colors.ex));
 	return (0);
 }

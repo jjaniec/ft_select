@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 19:35:03 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/25 18:50:55 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 18:37:57 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static unsigned int		get_elems_per_row(t_term_caps *tcaps)
 static void				print_arg_fmt_str(t_term_caps *tcaps, \
 							char *s, int fmt_len)
 {
-	printf("%-*s", \
+	ft_dprintf(STDIN_FILENO, "%-*s", \
 		((tcaps->e_infos.width > 0) ? \
 			((int)tcaps->e_infos.width) : ((int)ft_strlen(s))) + \
 		2 + fmt_len, s);
@@ -48,9 +48,9 @@ static void				print_arg_fmt(t_term_caps *tcaps, t_ft_select_arg *e)
 	if (e->stat_r == 0 || e->selected == true || tcaps->cursor_pos_ptr == e)
 	{
 		if (e->selected == true)
-			printf(ELEM_SELECTED_FMT);
+			ft_dprintf(STDIN_FILENO, ELEM_SELECTED_FMT);
 		if (tcaps->cursor_pos_ptr == e)
-			printf(CURSOR_POS_FMT);
+			ft_dprintf(STDIN_FILENO, CURSOR_POS_FMT);
 		print_arg_color(tcaps, e);
 		str_fmt = ft_strjoin(e->str, FORMAT_RESET);
 		print_arg_fmt_str(tcaps, str_fmt, \
@@ -68,8 +68,8 @@ static void				print_arg_fmt(t_term_caps *tcaps, t_ft_select_arg *e)
 
 static void				print_win_too_small(const char *clear_s)
 {
-	ft_putstr(clear_s);
-	ft_putstr("WIN TOO SMALL");
+	ft_putstr_fd(clear_s, STDIN_FILENO);
+	ft_putstr_fd("WIN TOO SMALL", STDIN_FILENO);
 }
 
 /*
@@ -95,10 +95,10 @@ void					print_args(t_term_caps *tcaps, t_ft_select_arg *li)
 		ptr->index = i++;
 		if (++j == tcaps->e_infos.elems_per_row)
 		{
-			printf("\n");
+			ft_dprintf(STDIN_FILENO, "\n");
 			j = 0;
 		}
 		ptr = ptr->next;
 	}
-	printf("\n");
+	ft_dprintf(STDIN_FILENO, "\n");
 }

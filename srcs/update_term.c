@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 17:33:10 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/21 21:43:33 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 17:14:37 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ int			change_term_settings(struct s_term_caps	*tcaps)
 		ft_putstr_fd("Call to tcsetattr() failed\n", STDERR_FILENO);
 		return (-1);
 	}
-	ft_putstr(INIT_SCR);
+	ft_putstr_fd(INIT_SCR, STDIN_FILENO);
 	return (0);
 }

@@ -6,14 +6,15 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/25 16:09:51 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/26 18:27:19 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SELECT_H
 # define FT_SELECT_H
 
-# include <libft.h>
+# include <ft_printf.h>
+# include "../ft_printf/libft/includes/libft.h"
 # include <stdlib.h>
 # include <curses.h>
 # include <term.h>
