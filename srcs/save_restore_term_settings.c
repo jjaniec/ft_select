@@ -31,10 +31,7 @@ void		save_restore_term_settings(int mode)
 	else if (mode == RESTORE || mode == RESTORE_NO_SCR_END)
 	{
 		if (mode != RESTORE_NO_SCR_END)
-		{
-			ft_putstr_fd(tgetstr("ve", NULL), STDIN_FILENO);
 			ft_putstr_fd(END_SCR, STDIN_FILENO);
-		}
 		if (tcsetattr(STDIN_FILENO, TCSANOW, &orig_tios) == -1)
 			ft_exit(FATAL_ERROR, \
 				"Failure while restoring the originals " \

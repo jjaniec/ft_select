@@ -167,7 +167,7 @@ typedef struct				s_term_caps
 }							t_term_caps;
 
 /*
-**	main.c
+**	print_escape_msg.c
 */
 
 void						print_escape_msg(void);

@@ -38,7 +38,7 @@ t_ft_select_arg		*create_ft_select_arg_struct(t_term_caps *tcaps, \
 	char				*e_path;
 
 	if (!(e = malloc(sizeof(t_ft_select_arg))))
-		exit(EXIT_FAILURE);
+		exit(FATAL_ERROR);
 	e->selected = false;
 	e->str = argptr;
 	e->prev = prev_elem_ptr;

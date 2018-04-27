@@ -23,7 +23,6 @@ void	handle_key_return(t_term_caps *tcaps)
 	t_ft_select_arg	*ptr;
 
 	ptr = tcaps->e_infos.elems;
-	ft_putstr_fd(tgetstr("ve", NULL), STDIN_FILENO);
 	ft_putstr_fd(END_SCR, STDIN_FILENO);
 	while (ptr)
 	{
