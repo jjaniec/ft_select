@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/27 16:22:50 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/27 16:43:43 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void		init_colors(t_term_caps *tcaps)
 static void		init_tcaps(t_term_caps *tcaps, int argc, char **argv)
 {
 	char	cwd[1024];
+	int		ac_args_begin;
 
 	if (!(tcaps->init_scr = tgetstr("ti", NULL)))
 		ft_exit(EXIT_FAILURE, "Failed to get necessary termcap: ti\n");
@@ -88,8 +89,11 @@ static void		init_tcaps(t_term_caps *tcaps, int argc, char **argv)
 		ft_exit(EXIT_FAILURE, "Failed to get necessary termcap: te\n");
 	if ((tcaps->cwd = getcwd(cwd, sizeof(cwd))) != NULL)
 		init_colors(tcaps);
+	ac_args_begin = 1 + parse_options(tcaps, argv + 1);
+	if (ac_args_begin == argc)
+		ft_exit(EXIT_SUCCESS, "No arguments specified\n");
 	tcaps->e_infos.elems = \
-		create_args_list(tcaps, argv + 1 + parse_options(tcaps, argv + 1));
+		create_args_list(tcaps, argv + ac_args_begin);
 	tcaps->e_infos.elems_first = tcaps->e_infos.elems;
 	tcaps->e_infos.elems_count = argc - 1;
 	tcaps->clear_s = tgetstr("cl", NULL);
