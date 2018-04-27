@@ -21,13 +21,20 @@ void	refresh_display(t_term_caps *tcaps)
 void	handle_key_return(t_term_caps *tcaps)
 {
 	t_ft_select_arg	*ptr;
+	bool			foo;
 
+	foo = false;
 	ptr = tcaps->e_infos.elems;
 	ft_putstr_fd(tcaps->end_scr, STDIN_FILENO);
 	while (ptr)
 	{
 		if (ptr->selected == true)
-			ft_dprintf(STDOUT_FILENO, "%s ", ptr->str);
+		{
+			if (foo == true)
+				write(STDOUT_FILENO, " ", ft_strlen(" "));
+			ft_dprintf(STDOUT_FILENO, "%s", ptr->str);
+			foo = true;
+		}
 		ptr = ptr->next;
 	}
 	save_restore_term_settings(RESTORE_NO_SCR_END);
