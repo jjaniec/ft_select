@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 21:11:14 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/26 20:44:45 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/27 16:01:31 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	handle_key_return(t_term_caps *tcaps)
 	t_ft_select_arg	*ptr;
 
 	ptr = tcaps->e_infos.elems;
-	ft_putstr_fd(END_SCR, STDIN_FILENO);
+	ft_putstr_fd(tcaps->end_scr, STDIN_FILENO);
 	while (ptr)
 	{
 		if (ptr->selected == true)

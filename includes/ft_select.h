@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:03:00 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/26 20:16:43 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/27 16:20:40 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,8 @@
 
 # define SZBUFKEY (5)
 
-# define INIT_SCR	"\e[?1049h"
-# define END_SCR	"\e[?1049l"
-
 # define COLOR_BACK_WHITE  "\x1B[47m"
 # define COLOR_CAR_BLUE  "\x1B[34m"
-# define END_COLOR	"\x1B[0m"
 
 # define DIR_COLOR "\e[1;36m"
 # define SYMLINK_COLOR "\e[35m"
@@ -162,6 +158,8 @@ typedef struct				s_term_caps
 	char					*clear_s;
 	t_ft_select_arg			*cursor_pos_ptr;
 	char					*movcur_s;
+	char					*init_scr;
+	char					*end_scr;
 	char					*cwd;
 
 }							t_term_caps;

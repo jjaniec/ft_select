@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/26 20:48:07 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/27 16:22:50 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		read_key(t_term_caps *tcaps, char key[SZBUFKEY])
 			{
 				save_restore_term_settings(RESTORE);
 				change_term_settings(g_tcaps);
-				ft_putstr_fd(INIT_SCR, STDIN_FILENO);
+				ft_putstr_fd(tcaps->init_scr, STDIN_FILENO);
 				get_term_size(&(g_tcaps->ts));
 				print_args(tcaps, tcaps->e_infos.elems);
 				print_escape_msg();
@@ -82,6 +82,10 @@ static void		init_tcaps(t_term_caps *tcaps, int argc, char **argv)
 {
 	char	cwd[1024];
 
+	if (!(tcaps->init_scr = tgetstr("ti", NULL)))
+		ft_exit(EXIT_FAILURE, "Failed to get necessary termcap: ti\n");
+	if (!(tcaps->end_scr = tgetstr("te", NULL)))
+		ft_exit(EXIT_FAILURE, "Failed to get necessary termcap: te\n");
 	if ((tcaps->cwd = getcwd(cwd, sizeof(cwd))) != NULL)
 		init_colors(tcaps);
 	tcaps->e_infos.elems = \
@@ -109,6 +113,7 @@ int				main(int argc, char **argv)
 		init_sig_handlers() == -1)
 		return (EXIT_FAILURE);
 	init_tcaps(&tcaps, argc, argv);
+	ft_putstr_fd(tcaps.init_scr, STDIN_FILENO);
 	ft_select(&tcaps);
 	free_args_list(tcaps.e_infos.elems);
 	save_restore_term_settings(RESTORE);

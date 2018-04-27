@@ -6,11 +6,13 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 21:18:43 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/26 20:46:49 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/27 16:02:32 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
+
+extern t_term_caps			*g_tcaps;
 
 /*
 ** The 'mode' parameter can be SAVE or RESTORE.
@@ -31,7 +33,7 @@ void		save_restore_term_settings(int mode)
 	else if (mode == RESTORE || mode == RESTORE_NO_SCR_END)
 	{
 		if (mode != RESTORE_NO_SCR_END)
-			ft_putstr_fd(END_SCR, STDIN_FILENO);
+			ft_putstr_fd(g_tcaps->end_scr, STDIN_FILENO);
 		if (tcsetattr(STDIN_FILENO, TCSANOW, &orig_tios) == -1)
 			ft_exit(FATAL_ERROR, \
 				"Failure while restoring the originals " \
