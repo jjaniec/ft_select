@@ -38,6 +38,10 @@ int				init_sig_handlers(void)
 {
 	if (signal(SIGINT, &(handle_sigint)) == SIG_ERR)
 		return (-1);
+	if (signal(SIGTERM, &(handle_sigint)) == SIG_ERR)
+		return (-1);
+	if (signal(SIGQUIT, &(handle_sigint)) == SIG_ERR)
+		return (-1);
 	if (signal(SIGWINCH, &(handle_sigwinch)) == SIG_ERR)
 		return (-1);
 	return (0);

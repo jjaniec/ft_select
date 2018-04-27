@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 18:40:15 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/26 20:41:30 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/27 16:43:04 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 
 int		parse_options(t_term_caps *tcaps, char **argv)
 {
-	if (argv[0][0] == '-')
+	if (argv && argv[0] && argv[0][0] == '-' && argv[0][1])
 	{
 		if (ft_strcmp(argv[0], "--ascii-sort") == 0)
 		{
 			tcaps->opt.ascii_sort = true;
-			if (ft_strcmp(argv[1], "--") == 0)
+			if (argv[1] && ft_strcmp(argv[1], "--") == 0)
 				return (2);
 			return (1);
 		}
