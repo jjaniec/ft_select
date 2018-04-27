@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 20:42:09 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/26 20:47:56 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/27 16:20:46 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void			print_escape_msg(void)
 	ft_putstr_fd(COLOR_BACK_WHITE, STDIN_FILENO);
 	ft_putstr_fd(COLOR_CAR_BLUE, STDIN_FILENO);
 	ft_putstr_fd(" PRESS ESCAPE TO QUIT", STDIN_FILENO);
-	ft_putstr_fd(END_COLOR, STDIN_FILENO);
+	ft_putstr_fd(COLOR_RESET, STDIN_FILENO);
 }
