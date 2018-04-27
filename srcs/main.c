@@ -98,7 +98,7 @@ static void		init_tcaps(t_term_caps *tcaps, int argc, char **argv)
 	tcaps->e_infos.elems_count = argc - 1;
 	tcaps->clear_s = tgetstr("cl", NULL);
 	tcaps->movcur_s = tgetstr("cm", NULL);
-	get_printing_width(&(tcaps->e_infos), argv + 1);
+	get_printing_width(&(tcaps->e_infos), tcaps->e_infos.elems);
 	tcaps->cursor_pos_ptr = tcaps->e_infos.elems_first;
 }
 

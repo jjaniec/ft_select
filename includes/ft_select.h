@@ -208,7 +208,7 @@ void						free_args_list(t_ft_select_arg *li);
 */
 
 int							get_printing_width(t_elems_infos *e_infos, \
-								char **elems);
+								t_ft_select_arg *elems);
 
 /*
 **	get_term_size.c
