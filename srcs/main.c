@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:52:06 by cyfermie          #+#    #+#             */
-/*   Updated: 2018/04/27 16:43:43 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/30 16:24:33 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int				main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	init_tcaps(&tcaps, argc, argv);
 	ft_putstr_fd(tcaps.init_scr, STDIN_FILENO);
+	ft_putstr_fd(tcaps.clear_s, STDIN_FILENO);
 	ft_select(&tcaps);
 	free_args_list(tcaps.e_infos.elems);
 	save_restore_term_settings(RESTORE);
