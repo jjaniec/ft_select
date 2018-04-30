@@ -61,6 +61,7 @@ void		analyze_key(t_term_caps *tcaps, char key[SZBUFKEY])
 	else if ((key[0] == KEY_BS && key[1] == '\0') || is_key_delete(key))
 	{
 		handle_key_bs(tcaps);
+		get_printing_width(&(tcaps->e_infos), tcaps->e_infos.elems);
 		refresh_display(tcaps);
 	}
 	else if (key[0] == KEY_RETURN && key[1] == '\0')
