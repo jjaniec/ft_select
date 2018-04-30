@@ -17,20 +17,19 @@
 ** Return -1 if passed char ** is NULL or has a lenght of 0
 */
 
-int		get_printing_width(t_elems_infos *e_infos, char **elems)
+int		get_printing_width(t_elems_infos *e_infos, t_ft_select_arg *elems)
 {
-	int		x;
-	int		i;
+	int		len;
 
 	e_infos->width = 0;
-	i = -1;
-	if (!elems || !(elems[0]))
+	if (elems == NULL)
 		return (-1);
-	while (elems[++i])
+	while (elems != NULL)
 	{
-		x = ft_strlen(elems[i]);
-		if (x > e_infos->width)
-			e_infos->width = x;
+		len = ft_strlen(elems->str);
+		if (len > e_infos->width)
+			e_infos->width = len;
+		elems = elems->next;
 	}
 	return (0);
 }

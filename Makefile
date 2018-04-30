@@ -6,7 +6,7 @@
 #    By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 17:27:33 by jjaniec           #+#    #+#              #
-#    Updated: 2018/04/26 20:42:57 by jjaniec          ###   ########.fr        #
+#    Updated: 2018/04/30 16:27:15 by jjaniec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,24 +14,24 @@ NAME = ft_select
 
 UNAME_S := $(shell uname -s)
 
-SRC_NAME = analyze_key.c \
-		   create_args_sorted_list.c \
-		   create_ft_select_struct.c \
-		   free_args_list.c \
-		   get_printing_width.c \
-		   get_term_size.c \
-		   handle_key_action.c \
-		   is_key.c \
-		   print_args.c \
-		   save_restore_term_settings.c \
-		   sig_management.c \
-		   update_term.c \
-		   cursor_movement.c \
-		   parse_options.c \
-		   create_args_list.c \
-		   print_arg_color.c \
-		   print_escape_msg.c \
-		   main.c
+SRC_NAME =	analyze_key.c \
+			create_args_list.c \
+			create_args_sorted_list.c \
+			create_ft_select_struct.c \
+			cursor_movement.c \
+			free_args_list.c \
+			get_printing_width.c \
+			get_term_size.c \
+			handle_key_action.c \
+			is_key.c \
+			main.c \
+			parse_options.c \
+			print_arg_color.c \
+			print_args.c \
+			print_escape_msg.c \
+			save_restore_term_settings.c \
+			sig_management.c \
+			update_term.c
 
 INCLUDES_NAME = ft_select.h
 
@@ -43,7 +43,7 @@ SRC = $(addprefix $(SRC_DIR), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_DIR), $(SRC_NAME:.c=.o))
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -g
 #DEV_FLAGS = -fsanitize=address -fno-omit-frame-pointer
 IFLAGS = -I./ft_printf/includes -I./$(INCLUDES_DIR)
 LFLAGS = -L./ft_printf -lftprintf -ltermcap
