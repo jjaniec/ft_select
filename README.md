@@ -5,6 +5,10 @@ Badge](https://api.codacy.com/project/badge/Grade/9cf510e3c2674a7ea6834a76e66dd2
 
 **ft_select** is a simple selector made in C to learn about the termcaps library
 
+## Demo
+
+[![demo](https://asciinema.org/a/179394.png)](https://asciinema.org/a/179394)
+
 ### Keybindings
 
 ```
